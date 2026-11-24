@@ -1,0 +1,1727 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>NoFuss</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@900&family=Inter+Tight:wght@700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap">
+  <link rel="stylesheet" href="brand/tokens.css">
+  <link rel="stylesheet" href="v2.css">
+  <script src="brand/pips.js?v=2"></script>
+  <script src="brand/icons.js"></script>
+  <script src="org-path.js" defer></script><!-- runs after v2.js: keeps the org path on the org side -->
+</head>
+<body>
+  <!--
+    NoFuss v2: the screens from context/ui-ux/flow.md, in brand v0.2 (context/brand/).
+    Built screen by screen in the brand pass (Step 3). The old prototype (../index.html) keeps
+    working until v2 replaces it. Pages are <section class="screen" data-id="...">; links use data-goto.
+  -->
+
+  <!-- 1 · Landing (first open): the Pip intro, then the landing -->
+  <section class="screen landing" data-id="landing">
+    <div class="intro" id="intro" aria-label="Welcome">
+      <button class="go" id="go">let's go</button>
+      <button class="skip" id="skip">skip</button>
+    </div>
+
+    <header class="topbar">
+      <span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span>
+      <button class="textlink" data-goto="signin">sign in</button>
+    </header>
+
+    <main class="wrap">
+      <div class="hero">
+        <div class="hero-text">
+          <p class="eyebrow">the AI event planner · for hosts and teams</p>
+          <h1>your event, sorted.</h1>
+          <p class="lede">From one dinner to thirty events a year. Pip forecasts who'll actually show up, sends the invites and builds the orders. Nothing goes out, and no money moves, without your OK.</p>
+          <div class="hero-actions">
+            <button class="btn btn-light" data-goto="signin">plan an event</button>
+            <button class="textlink on-dark" data-goto="org">set up my team</button>
+          </div>
+        </div>
+        <div class="hero-pip"><button class="stay" id="stayPip" aria-label="Pip. Tap to say hi"></button></div>
+      </div>
+
+      <h2 class="section-label">how it works</h2>
+      <ol class="steps">
+        <li class="folder">
+          <span class="f-back" aria-hidden="true"></span>
+          <svg class="f-tab" viewBox="0 0 170 30" aria-hidden="true"><path d="M0 30V20Q0 0 20 0H128C142 0 145 30 160 30H170V30Z"/></svg>
+          <div class="f-front">
+            <span class="icon-disc" data-icon="connectors"></span>
+            <span class="step-n">1</span>
+            <b>bring your event, or start fresh</b>
+            <span>Connect Luma and Pip picks up your guest list and replies. Starting fresh? Six quick questions.</span>
+          </div>
+        </li>
+        <li class="folder">
+          <span class="f-back" aria-hidden="true"></span>
+          <svg class="f-tab" viewBox="0 0 170 30" aria-hidden="true"><path d="M0 30V20Q0 0 20 0H128C142 0 145 30 160 30H170V30Z"/></svg>
+          <div class="f-front">
+            <span class="icon-disc" data-icon="forecast"></span>
+            <span class="step-n">2</span>
+            <b>get a plan built on who'll come</b>
+            <span>Pip forecasts from real RSVPs, sizes food and drinks to match, and re-plans when things change.</span>
+          </div>
+        </li>
+        <li class="folder">
+          <span class="f-back" aria-hidden="true"></span>
+          <svg class="f-tab" viewBox="0 0 170 30" aria-hidden="true"><path d="M0 30V20Q0 0 20 0H128C142 0 145 30 160 30H170V30Z"/></svg>
+          <div class="f-front">
+            <span class="icon-disc" data-icon="approve"></span>
+            <span class="step-n">3</span>
+            <b>approve, and you're done</b>
+            <span>Every message, change and order waits for your OK. Money only moves when you tap.</span>
+          </div>
+        </li>
+      </ol>
+        <footer class="foot">NoFuss · designed at Parsons</footer>
+    </main>
+  </section>
+
+  <!-- 2 · Sign in -->
+  <section class="screen onb" data-id="signin">
+    <header class="onb-top"><button class="back" data-goto="landing" aria-label="Back">←</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></header>
+    <main class="onb-col">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble">Hi! Let's get you in. It takes a few seconds.</p></div>
+      <h1 class="q">sign in or create your account</h1>
+      <div class="stack">
+        <button class="btn-option" data-goto="who"><span class="opt-ic" aria-hidden="true">G</span>continue with Google</button>
+        <button class="btn-option" data-goto="who"><span class="opt-ic" aria-hidden="true"></span>continue with Apple</button>
+      </div>
+      <div class="or"><span>or</span></div>
+      <label class="field-label" for="email">email</label>
+      <input class="field" id="email" type="email" placeholder="you@example.com" autocomplete="email">
+      <button class="btn wide" data-goto="who">send me a sign-in link</button>
+      <p class="fine">New here? Signing in creates your account. No password to remember.</p>
+    </main>
+  </section>
+
+  <!-- 3 · Who's this for? (yellow + blue, an approved combo) -->
+  <section class="screen onb" data-id="who">
+    <header class="onb-top"><button class="back" data-goto="signin" aria-label="Back">←</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></header>
+    <main class="onb-col wide">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble">One question before we start, so I set things up the right way.</p></div>
+      <h1 class="q">who's this for?</h1>
+      <div class="choices" role="radiogroup" aria-label="Who's this for?" data-next="whoNext">
+        <button class="choice c-yellow" role="radio" aria-checked="false" data-path="start">
+          <span class="icon-disc" data-icon="party" data-icon-color="color-mix(in srgb, var(--p-yellow) 55%, var(--p-ink))"></span>
+          <b>just me</b>
+          <span>You plan it yourself, one party or thirty a year. Pip plans each one with you.</span>
+          <span class="tick" aria-hidden="true"></span>
+        </button>
+        <button class="choice c-blue" role="radio" aria-checked="false" data-path="org">
+          <span class="icon-disc" data-icon="networking" data-icon-color="var(--p-blue)"></span>
+          <b>my organization</b>
+          <span>Lots of events and a team. One dashboard for all of them.</span>
+          <span class="tick" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="who-how" id="whoHow" hidden>
+        <p class="field-label">how many events a year?</p>
+        <div class="pills" role="radiogroup" aria-label="How many events a year"><button class="pill" role="radio" aria-checked="false" data-pro="few">a few</button><button class="pill" role="radio" aria-checked="false" data-pro="monthly">about one a month</button><button class="pill" role="radio" aria-checked="false" data-pro="pro">30 or more</button></div>
+      </div>
+      <button class="btn wide" id="whoNext" disabled>continue</button>
+      <p class="fine">You can change this later in settings.</p>
+    </main>
+  </section>
+
+  <!-- 4 · Bring an event or start fresh -->
+  <section class="screen onb" data-id="start">
+    <header class="onb-top"><button class="back" data-goto="who" aria-label="Back">←</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></header>
+    <main class="onb-col wide">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble">Got an event already, or shall we start fresh?</p></div>
+      <h1 class="q">how do you want to start?</h1>
+      <div class="choices" role="radiogroup" aria-label="How do you want to start?" data-next="startNext">
+        <button class="choice c-blue" role="radio" aria-checked="false" data-path="bring">
+          <span class="icon-disc" data-icon="connectors" data-icon-color="var(--p-blue)"></span>
+          <b>bring my event</b><span>Already made it in an event app? Connect it and Pip picks up the details and the guest list.</span><span class="tick" aria-hidden="true"></span>
+        </button>
+        <button class="choice c-yellow" role="radio" aria-checked="false" data-path="q1">
+          <span class="icon-disc" data-icon="magic" data-icon-color="color-mix(in srgb, var(--p-yellow) 55%, var(--p-ink))"></span>
+          <b>start from scratch</b><span>Answer 6 quick questions. About a minute, and Pip sets the event up for you.</span><span class="tick" aria-hidden="true"></span>
+        </button>
+      </div>
+      <button class="btn wide" id="startNext" disabled>continue</button>
+      <p class="fine">You can connect an event app later too.</p>
+    </main>
+  </section>
+
+  <!-- 5 · Connect your event app, pick the event -->
+  <section class="screen onb" data-id="bring">
+    <header class="onb-top"><button class="back" data-goto="start" aria-label="Back">←</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></header>
+    <main class="onb-col wide">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="bringSay">Which app is your event in?</p></div>
+      <h1 class="q">connect your event app</h1>
+      <div class="rows">
+        <div class="row-card"><span class="logo-tile">Lu</span><div><b>Luma</b><span>Events, invites and RSVPs</span></div><button class="mini" id="connectLuma">connect</button></div>
+        <div class="row-card soon"><span class="logo-tile">Eb</span><div><b>Eventbrite</b><span>Coming soon</span></div></div>
+        <div class="row-card soon"><span class="logo-tile">Pa</span><div><b>Partiful</b><span>Coming soon</span></div></div>
+      </div>
+      <div id="pickEvent" hidden>
+        <p class="field-label" style="margin:14px 0 10px">your upcoming events on Luma</p>
+        <div class="rows" role="radiogroup" aria-label="Pick your event" data-next="useEvent">
+          <button class="row-card pick" role="radio" aria-checked="false" data-path="cover"><span class="tick" aria-hidden="true"></span><div><b>Drinks on the roof</b><span>fri 12/4 · 7pm · 30 invited · 22 going</span></div></button>
+          <button class="row-card pick" role="radio" aria-checked="false" data-path="cover"><span class="tick" aria-hidden="true"></span><div><b>Book club holiday party</b><span>sat 12/12 · 6pm · 14 invited · 9 going</span></div></button>
+        </div>
+        <button class="btn wide" id="useEvent" disabled style="margin-top:14px">use this event</button>
+      </div>
+      <p class="fine">Pip only reads your event. Nothing changes in Luma without your OK.</p>
+    </main>
+  </section>
+
+  <!-- 6 · Q1 what -->
+  <section class="screen onb" data-id="q1">
+    <header class="onb-top"><button class="back" data-goto="start" aria-label="Back">←</button><div class="progress" aria-label="question 1 of 6"><span class="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></span><span>1 of 6</span></div><span></span></header>
+    <main class="onb-col wide">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble">What kind of event is it? It changes the food, the drinks, the place and how many people actually come.</p></div>
+      <h1 class="q">what are you throwing?</h1>
+      <div class="tiles" role="radiogroup" aria-label="What are you throwing?" data-next="q1Next">
+        <button class="tile" role="radio" aria-checked="false" data-path="q2" data-type="cocktail party"><span class="tile-ic" data-icon="cocktail" data-icon-color="var(--p-ink)"></span><b>cocktail party</b></button>
+        <button class="tile" role="radio" aria-checked="false" data-path="q2" data-type="dinner"><span class="tile-ic" data-icon="dinner" data-icon-color="var(--p-ink)"></span><b>dinner</b></button>
+        <button class="tile" role="radio" aria-checked="false" data-path="q2" data-type="networking night"><span class="tile-ic" data-icon="networking" data-icon-color="var(--p-ink)"></span><b>networking night</b></button>
+        <button class="tile" role="radio" aria-checked="false" data-path="q2" data-type="a talk"><span class="tile-ic" data-icon="talk" data-icon-color="var(--p-ink)"></span><b>a talk</b></button>
+        <button class="tile" role="radio" aria-checked="false" data-path="q2" data-type="birthday"><span class="tile-ic" data-icon="party" data-icon-color="var(--p-ink)"></span><b>birthday</b></button>
+        <button class="tile" role="radio" aria-checked="false" data-path="q2" data-type="something else"><span class="tile-ic" data-icon="add" data-icon-color="var(--p-ink)"></span><b>something else</b><span>type it in</span></button>
+      </div>
+      <input class="field" id="otherType" placeholder="e.g. a book launch" hidden aria-label="What kind of event">
+      <label class="field-label" for="evName">what's it called?</label>
+      <input class="field" id="evName" placeholder="Drinks on the roof" autocomplete="off" aria-describedby="evNameHint">
+      <span class="fine left" id="evNameHint">Leave it and Pip uses the one shown. You can change it any time.</span>
+      <button class="btn wide" id="q1Next" disabled>continue</button>
+    </main>
+  </section>
+
+  <!-- 7 · Q2 when (tips, days and times follow the event type) -->
+  <section class="screen onb" data-id="q2">
+    <header class="onb-top"><button class="back" data-goto="q1" aria-label="Back">←</button><div class="progress" aria-label="question 2 of 6"><span class="dots"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></span><span>2 of 6</span></div><span></span></header>
+    <main class="onb-col wide">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="q2Say"></p></div>
+      <h1 class="q">when is it?</h1>
+      <p class="field-label">day</p>
+      <div class="pills" role="radiogroup" aria-label="Day" id="dayGroup"></div>
+      <div class="picker" id="calendar" role="group" aria-label="Pick a date" hidden></div>
+      <p class="field-label" style="margin-top:8px">start time</p>
+      <div class="pills" role="radiogroup" aria-label="Start time" id="timeGroup"></div>
+      <div class="picker" id="wheel" role="group" aria-label="Pick a start time" hidden></div>
+      <label class="field-label" for="evArea" style="margin-top:8px">around where?</label>
+      <input class="field" id="evArea" value="Lower East Side" autocomplete="off" aria-describedby="evAreaHint">
+      <span class="fine left" id="evAreaHint">A neighborhood is enough. Pip uses it for places, travel times and the weather.</span>
+      <button class="btn wide" id="q2Next" data-goto="q3" disabled>continue</button>
+    </main>
+  </section>
+
+  <!-- 8 · Q3 how many (the forecast first) -->
+  <section class="screen onb" data-id="q3">
+    <header class="onb-top"><button class="back" data-goto="q2" aria-label="Back">←</button><div class="progress" aria-label="question 3 of 6"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span><span>3 of 6</span></div><span></span></header>
+    <main class="onb-col wide">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble">About 4 in 10 people who say yes to a small free event don't come (PheedLoop). So I plan for who'll actually show up, not every yes.</p></div>
+      <div class="forecast" aria-live="polite">
+        <span class="fc-tag">forecast</span>
+        <b><span id="fcNum">~16–20</span> likely to come</b>
+        <span>Food and drinks planned for <span id="fcFood">~20</span>. It updates as people reply.</span>
+      </div>
+      <h1 class="q">how many are you inviting?</h1>
+      <div class="stepper"><button id="minus" aria-label="Fewer">–</button><input id="count" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="3" value="30" aria-label="How many people you're inviting"><button id="plus" aria-label="More">+</button></div>
+      <button class="btn wide" data-goto="cover">continue</button>
+    </main>
+  </section>
+
+  <!-- 9 · Q4 who's covering what -->
+  <section class="screen onb" data-id="cover">
+    <header class="onb-top"><button class="back" data-goto="q3" aria-label="Back" id="back-q3-4">←</button><div class="progress" aria-label="question 4 of 6"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><span>4 of 6</span></div><span></span></header>
+    <main class="onb-col wide">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="coverSay"></p></div>
+      <div class="from-app" id="fromApp" hidden><b>From Luma: Drinks on the roof · fri 12/4 · 7pm · 30 invited ✓</b><span>Pip skipped the questions it already knew.</span></div>
+      <h1 class="q">who's covering what?</h1>
+      <div class="cover-row">
+          <div class="cover-label"><span class="tile-ic" data-icon="location" data-icon-color="var(--p-ink)"></span><div><b>the place</b><span>Where it happens, and whether it costs anything</span></div></div>
+          <div class="pills" role="radiogroup" aria-label="the place"><button class="pill" role="radio" aria-checked="true" data-cover="venue" data-val="free">free spot</button><button class="pill" role="radio" aria-checked="false" data-cover="venue" data-val="paid">paid venue</button><button class="pill" role="radio" aria-checked="false" data-cover="venue" data-val="booked">already paid for</button><button class="pill" role="radio" aria-checked="false" data-cover="venue" data-val="find">help me find one</button></div>
+        </div>
+      <div class="cover-row">
+          <div class="cover-label"><span class="tile-ic" data-icon="food" data-icon-color="var(--p-ink)"></span><div><b>food</b></div></div>
+          <div class="pills" role="radiogroup" aria-label="food"><button class="pill" role="radio" aria-checked="true" data-cover="food" data-val="host">I'm providing</button><button class="pill" role="radio" aria-checked="false" data-cover="food" data-val="potluck">potluck</button><button class="pill" role="radio" aria-checked="false" data-cover="food" data-val="none">no food</button></div>
+        </div>
+      <div class="cover-row">
+          <div class="cover-label"><span class="tile-ic" data-icon="drinks" data-icon-color="var(--p-ink)"></span><div><b>drinks</b></div></div>
+          <div class="pills" role="radiogroup" aria-label="drinks"><button class="pill" role="radio" aria-checked="true" data-cover="drinks" data-val="host">I'm providing</button><button class="pill" role="radio" aria-checked="false" data-cover="drinks" data-val="byob">BYOB</button><button class="pill" role="radio" aria-checked="false" data-cover="drinks" data-val="mix">a bit of both</button></div>
+        </div>
+      <p class="fine" id="coverNote"></p>
+      <button class="btn wide" id="coverNext" data-goto="q4">continue</button>
+    </main>
+  </section>
+
+  <!-- 10 · Find a place (both paths) -->
+  <section class="screen onb" data-id="place">
+    <header class="onb-top"><button class="back" id="placeBack" data-goto="cover" aria-label="Back">←</button><div class="progress" aria-label="question 4 of 6"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><span>4 of 6</span></div><span></span></header>
+    <main class="onb-col xwide">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="placeSay"></p></div>
+      <h1 class="q">find a place</h1>
+      <div class="pills"><span class="pill static" id="placeFor">for ~20 · fri 12/4, 7pm</span><span class="pill static" id="placeNear">near the Lower East Side</span><span class="pill static">inside your budget</span></div>
+      <div class="places" id="places"></div>
+      <p class="fine">Booking with a card on file, or with a no-show fee, counts as a payment: it waits for your OK at checkout. Travel times from Google Maps and the MTA; prices from each app.</p>
+    </main>
+  </section>
+
+  <!-- 11 · Q5 budget -->
+  <section class="screen onb" data-id="q4">
+    <header class="onb-top"><button class="back" data-goto="cover" aria-label="Back" id="back-cover-5">←</button><div class="progress" aria-label="question 5 of 6"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><span>5 of 6</span></div><span></span></header>
+    <main class="onb-col wide">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="budgetSay">This is your spending cap. I'll never go over it without asking.</p></div>
+      <h1 class="q">what's the budget?</h1>
+      <div class="rows" role="radiogroup" aria-label="Budget" id="budgetRows" data-next="q4Next">
+        <button class="opt-row" role="radio" aria-checked="false" data-key="low" data-cap="300" data-path="q5"><span class="tile-ic" data-icon="order" data-icon-color="var(--p-ink)"></span><span class="opt-txt"><b>under $300</b><span class="sub" data-sub="low"></span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button>
+        <button class="opt-row" role="radio" aria-checked="false" data-key="mid" data-cap="600" data-path="q5"><span class="tile-ic" data-icon="order" data-icon-color="var(--p-ink)"></span><span class="opt-txt"><b>$300–600</b><span class="sub" data-sub="mid"></span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button>
+        <button class="opt-row" role="radio" aria-checked="false" data-key="custom" data-path="q5" data-custom-budget><span class="tile-ic" data-icon="add" data-icon-color="var(--p-ink)"></span><span class="opt-txt"><b>customize</b><span class="sub" data-sub="custom">Type your own spending cap</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button>
+      </div>
+      <div class="custom-budget" id="customBudget" hidden>
+        <label class="field-label" for="budgetAmt">your spending cap</label>
+        <div class="money"><span aria-hidden="true">$</span><input id="budgetAmt" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" placeholder="450" autocomplete="off"></div>
+        <span class="fine" style="text-align:left" id="budgetHint">Pip never goes over this without asking.</span>
+      </div>
+      <button class="btn wide" id="q4Next" disabled>continue</button>
+    </main>
+  </section>
+
+  <!-- 12 · Q6 how hands-on -->
+  <section class="screen onb" data-id="q5">
+    <header class="onb-top"><button class="back" data-goto="q4" aria-label="Back" id="back-q4-6">←</button><div class="progress" aria-label="question 6 of 6"><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><span>6 of 6</span></div><span></span></header>
+    <main class="onb-col wide">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble">Last one. How much do you want to see before I do things?</p></div>
+      <h1 class="q">how hands-on do you want to be?</h1>
+      <div class="rows" role="radiogroup" aria-label="How hands-on" data-next="q5Next">
+        <button class="opt-row" role="radio" aria-checked="false" data-key="all" data-path="building"><span class="tile-ic" data-icon="why" data-icon-color="var(--p-ink)"></span><span class="opt-txt"><b>show me everything</b><span class="sub" data-sub="all">Every invite, order and change.</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button>
+        <button class="opt-row" role="radio" aria-checked="false" data-key="mid" data-path="building" data-suggested><span class="tile-ic" data-icon="approve" data-icon-color="var(--p-ink)"></span><span class="opt-txt"><b>somewhere in between</b><span class="sub" data-sub="mid">Big decisions and money. Pip does the rest.</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button>
+        <button class="opt-row" role="radio" aria-checked="false" data-key="money" data-path="building"><span class="tile-ic" data-icon="order" data-icon-color="var(--p-ink)"></span><span class="opt-txt"><b>just ask me about money</b><span class="sub" data-sub="money">You approve payments. Pip handles the rest.</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button>
+      </div>
+      <button class="btn wide" id="q5Next" disabled>build my plan</button>
+      <p class="fine">You can change this any time in settings.</p>
+    </main>
+  </section>
+
+  <!-- 13 · Pip builds the plan -->
+  <section class="screen onb" data-id="building">
+    <header class="onb-top"><span></span><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></header>
+    <main class="onb-col wide">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble">On it. This takes a few seconds.</p></div>
+      <h1 class="q">planning your party…</h1>
+      <ul class="build" id="buildList" aria-live="polite"></ul>
+      <button class="btn wide" id="buildDone" data-goto="plan" hidden>see my plan</button>
+    </main>
+  </section>
+
+  <!-- 14 · Your plan, as a poster (the first in-app screen: menu left, the event middle, Pip right) -->
+  <section class="screen inapp" data-id="plan">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item on" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <!-- burgundy = big moment: the plan is ready. The event as its poster, title first (Burak). -->
+        <article class="poster" aria-label="Your event">
+          <div class="poster-art"><svg class="poster-svg" viewBox="0 0 640 280" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="640" height="280" fill="color-mix(in srgb, var(--burgundy) 82%, var(--ink))"/>
+              <circle cx="90" cy="30" r="1.8" fill="var(--white)" opacity=".7"/><circle cx="250" cy="22" r="1.4" fill="var(--white)" opacity=".7"/><circle cx="330" cy="48" r="1.6" fill="var(--white)" opacity=".7"/><circle cx="560" cy="30" r="1.8" fill="var(--white)" opacity=".7"/><circle cx="470" cy="18" r="1.3" fill="var(--white)" opacity=".7"/><circle cx="170" cy="50" r="1.2" fill="var(--white)" opacity=".7"/>
+              <circle cx="505" cy="62" r="34" fill="var(--yellow)"/><circle cx="520" cy="54" r="30" fill="color-mix(in srgb, var(--burgundy) 82%, var(--ink))"/>
+              <path d="M0 196h46v-58h38v40h30v-74h52v92h26v-46h44v60h40v-104h18l12-14 12 14h18v104h34v-38h48v52h36v-86h56v64h36v-30h40v52H640v84H0Z" fill="color-mix(in srgb, var(--burgundy) 55%, var(--ink))"/>
+              <g fill="var(--yellow)" opacity=".85"><rect x="134" y="132" width="8" height="10"/><rect x="152" y="150" width="8" height="10"/><rect x="292" y="124" width="8" height="10"/><rect x="310" y="146" width="8" height="10"/><rect x="292" y="168" width="8" height="10"/><rect x="476" y="146" width="8" height="10"/><rect x="494" y="168" width="8" height="10"/></g>
+              <rect x="0" y="226" width="640" height="54" fill="var(--ink)" opacity=".55"/>
+              <path d="M20 64Q330 140 630 60" fill="none" stroke="var(--white)" stroke-opacity=".45" stroke-width="2"/><circle cx="60" cy="74" r="5" fill="var(--yellow)"/><circle cx="130" cy="92" r="5" fill="var(--pink)"/><circle cx="200" cy="104" r="5" fill="var(--yellow)"/><circle cx="270" cy="110" r="5" fill="var(--pink)"/><circle cx="340" cy="111" r="5" fill="var(--yellow)"/><circle cx="410" cy="106" r="5" fill="var(--pink)"/><circle cx="480" cy="96" r="5" fill="var(--yellow)"/><circle cx="550" cy="82" r="5" fill="var(--pink)"/><circle cx="610" cy="70" r="5" fill="var(--yellow)"/>
+              <g transform="translate(78 150)"><path d="M0 0h64L32 40Z" fill="var(--orange)"/><path d="M8 6h48L32 34Z" fill="var(--pink)" opacity=".9"/><rect x="30" y="40" width="4" height="34" fill="var(--white)"/><rect x="16" y="74" width="32" height="5" rx="2.5" fill="var(--white)"/><circle cx="50" cy="2" r="7" fill="var(--olive)"/><path d="M40 -14L30 22" stroke="var(--white)" stroke-width="2.5"/></g>
+            </svg><span class="poster-tag" title="Add a photo any time">drafted by Pip</span></div>
+          <div class="poster-body">
+            <p class="eyebrow" id="pType">cocktail party</p>
+            <h1 class="poster-title"><span data-evname>Drinks on the roof</span> <button class="edit" data-chat aria-label="Rename the event">edit</button></h1>
+            <dl class="facts">
+              <div><dt>when</dt><dd id="pWhen">fri 12/4 · 7pm</dd></div>
+              <div><dt>where</dt><dd><span id="pPlace">Add the place</span> <button class="textlink on-dark" data-goto="place" data-place-from="plan" id="pFind">find a place with Pip</button></dd></div>
+              <div><dt>guests</dt><dd><span id="pInvited">30 invited</span> <span class="fc-chip" id="pFc">forecast ~16–20 likely</span></dd></div>
+            </dl>
+            <p class="poster-why" id="pWhy">From 30 invites and how cocktail parties usually go. It updates as people reply.</p>
+            <a class="luma" href="#plan" onclick="return false"><span data-evslug>luma.com/drinks-on-the-roof</span> <span>draft</span></a>
+          </div>
+        </article>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble">Your plan's ready. Nothing goes out yet.</p></div>
+        <section class="needs" aria-label="Needs your OK">
+          <div class="needs-head"><b>needs your OK</b><span class="count" id="planCount">2</span></div>
+          <div id="planNeeds"></div>
+          <button class="btn btn-light wide" data-goto="ok" id="planReview">review 2 things</button>
+        </section>
+        <section class="also" aria-label="Pip will also">
+          <p class="field-label">Pip will also</p>
+          <ul>
+            <li>Check RSVPs and update the forecast</li>
+            <li>Send one reminder on tue 12/1, only to people who haven't replied</li>
+            <li>Watch the weather, subway and traffic for the night</li>
+            <li>Open QR check-in on party night</li>
+            <li>Learn who really came, so your next forecast is sharper</li>
+          </ul>
+        </section>
+      </aside>
+      <div class="dock"><button class="btn dock-ok" data-goto="ok" id="planDock">2 need your OK · review</button><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <section class="screen inapp" data-id="ok">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item on" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-ok">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="page-head"><button class="back" data-goto="plan" aria-label="Back to your plan">←</button>
+          <div><h1 class="h-page">needs your OK</h1><span class="muted" id="okProgress">0 of 2 approved</span></div></div>
+        <div class="ok-flow" id="okFlow"></div>
+        <div class="paid" id="okPaid" hidden>
+          <span class="circle on big" aria-hidden="true"></span>
+          <h1 class="h-page">you're all set</h1>
+          <p id="paidTxt"></p>
+          <button class="btn" data-goto="event">go to my event</button>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="okSay"></p></div>
+        <section class="needs summary" aria-label="Summary">
+          <div class="needs-head"><b>summary</b></div>
+          <div id="sumRows"></div>
+          <div class="sum-total"><span>total today</span><b id="sumTotal">$0</b></div>
+          <div id="sumCap" class="sum-cap"></div>
+          <button class="btn btn-light wide" id="payBtn" disabled>approve everything to pay</button>
+          <span class="fine on-dark" id="payFine">Nothing is charged until you tap.</span>
+        </section>
+      </aside>
+      <div class="dock"><button class="btn dock-ok" id="payDock" disabled>approve everything to pay</button><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+  <section class="screen inapp" data-id="event">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item on" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-event">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <header class="ev-head" id="ev-overview">
+          <div class="ev-thumb"><span data-pipface-small></span></div>
+          <div class="ev-title">
+            <span class="state"><span aria-hidden="true">◷</span> upcoming</span>
+            <h1 class="h-page" data-evname>Drinks on the roof</h1>
+            <span class="muted" id="evMeta">fri 12/4 · 7pm · <a class="textlink" href="#event" onclick="return false" data-evslug>luma.com/drinks-on-the-roof</a> <span class="live-tag">live</span></span>
+          </div>
+        </header>
+        <div class="bars">
+          <div class="bar-card solid-yellow">
+            <div class="bar-top"><b id="evDays">11 days to go</b><span class="muted" id="evParty">party fri 12/4</span></div>
+            <div class="bar" aria-hidden="true"><i class="time" style="width:35%"></i></div>
+            <span class="muted">planning started 11/17</span>
+          </div>
+          <div class="bar-card solid-blue">
+            <div class="bar-top"><b id="evYes">22 of 30 said yes</b><button class="textlink" data-jump="ev-guests">see the guest list</button></div>
+            <div class="bar stack" aria-hidden="true"><i class="yes" style="width:73%"></i><i class="maybe" style="width:13%"></i><i class="no" style="width:7%"></i></div>
+            <span class="legend"><span><i class="yes"></i>22 yes</span><span><i class="maybe"></i>4 maybe</span><span><i class="no"></i>2 no</span><span><i></i>2 no reply</span></span>
+            <span class="fc-chip light" id="evFc">forecast ~16–20 likely to come</span>
+          </div>
+        </div>
+        <div class="drawer" id="evDrawer">
+          <section class="dfolder" id="ev-guests" style="--i:0" aria-label="guests">
+            <button class="d-tab" data-fold aria-expanded="false" aria-controls="dc-guests"><svg class="d-shape" viewBox="0 0 200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C16 44 14 0 34 0H166C186 0 184 44 200 44Z"/></svg><b>guests</b></button>
+            <div class="d-body">
+              <button class="d-sum" data-fold aria-expanded="false" aria-controls="dc-guests"><span class="icon-disc sm" data-icon="guests" data-icon-color="var(--p-ink)"></span><span class="d-sumtxt" id="evInvited">30 invited</span><span class="d-chev" aria-hidden="true">open</span></button>
+              <div class="d-content" id="dc-guests"><div class="d-inner">
+                <ul class="guest-list">
+                  <li><span class="av">A</span>Ana<span class="st">yes</span></li>
+                  <li><span class="av">B</span>Ben<span class="st">yes · +1</span></li>
+                  <li><span class="av">C</span>Chloe<span class="st">maybe</span></li>
+                  <li><span class="av">D</span>Dev<span class="st">no reply</span></li>
+                </ul>
+                <span class="muted">+ 26 more · one reminder goes to the 2 who haven't replied, on tue 12/1. Nobody gets more than one.</span>
+              </div></div>
+            </div>
+          </section>
+          <section class="dfolder" id="ev-food" style="--i:1" aria-label="food and drinks">
+            <button class="d-tab" data-fold aria-expanded="false" aria-controls="dc-food"><svg class="d-shape" viewBox="0 0 200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C16 44 14 0 34 0H166C186 0 184 44 200 44Z"/></svg><b>food &amp; drinks</b></button>
+            <div class="d-body">
+              <button class="d-sum" data-fold aria-expanded="false" aria-controls="dc-food"><span class="icon-disc sm" data-icon="food" data-icon-color="var(--p-ink)"></span><span class="d-sumtxt" id="evFoodTag"></span><span class="d-chev" aria-hidden="true">open</span></button>
+              <div class="d-content" id="dc-food"><div class="d-inner">
+                <div id="evFood"></div>
+              </div></div>
+            </div>
+          </section>
+          <section class="dfolder locked" id="ev-dayof" style="--i:2" aria-label="day of">
+            <button class="d-tab" data-fold aria-expanded="false" aria-controls="dc-dayof"><svg class="d-shape" viewBox="0 0 200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C16 44 14 0 34 0H166C186 0 184 44 200 44Z"/></svg><b>day of</b></button>
+            <div class="d-body">
+              <button class="d-sum" data-fold aria-expanded="false" aria-controls="dc-dayof"><span class="icon-disc sm" data-icon="dayof" data-icon-color="var(--p-ink)"></span><span class="d-sumtxt" id="evDayofTag">check-in and the run of the night · switches on <span data-evday>fri 12/4</span></span><span class="d-chev" aria-hidden="true">open</span></button>
+              <div class="d-content" id="dc-dayof"><div class="d-inner">
+                <ul class="plain"><li>QR check-in for guests at the door</li><li>The run of the night: doors 7pm, drinks out, wrap around 10</li><li>Who's arrived, live</li></ul>
+                <button class="ghost" data-goto="night" style="align-self:flex-start">preview party night</button>
+              </div></div>
+            </div>
+          </section>
+          <section class="dfolder" id="ev-budget" style="--i:3" aria-label="budget and orders">
+            <button class="d-tab" data-fold aria-expanded="false" aria-controls="dc-budget"><svg class="d-shape" viewBox="0 0 200 44" preserveAspectRatio="none" aria-hidden="true"><path d="M0 44C16 44 14 0 34 0H166C186 0 184 44 200 44Z"/></svg><b>budget &amp; orders</b></button>
+            <div class="d-body">
+              <button class="d-sum" data-fold aria-expanded="false" aria-controls="dc-budget"><span class="icon-disc sm" data-icon="order" data-icon-color="var(--p-ink)"></span><span class="d-sumtxt" id="evBudgetTag"></span><span class="d-chev" aria-hidden="true">open</span></button>
+              <div class="d-content" id="dc-budget"><div class="d-inner">
+                <div class="bar" aria-hidden="true"><i class="spent" id="evBudgetBar"></i></div>
+                <div id="evBudgetRows"></div>
+              </div></div>
+            </div>
+          </section>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="evSay">22 said yes and 4 maybe. I'm still planning for ~16–20, so the order stays as it is.</p></div>
+        <section class="calm-card" aria-label="Needs your OK">
+          <div class="needs-head"><b>needs your OK</b><span class="count light">0</span></div>
+          <div class="ok-item light"><span class="circle on"></span><div><b>nothing right now</b><span>I'll tell you when something needs you.</span></div></div>
+        </section>
+        <section class="also" aria-label="Next up">
+          <p class="field-label">next up</p>
+          <div class="next-up"><b>one reminder · tue 12/1, 10am</b><span>To the 2 people who haven't replied</span><button class="ghost" data-chat>change it with Pip</button></div>
+          <button class="ghost" data-goto="moments">when Pip checks</button>
+        </section>
+        <section class="also" aria-label="While you were away">
+          <p class="field-label">while you were away</p>
+          <ul class="log">
+            <li><span>today</span>6 new yeses. Now 22 of 30.</li>
+            <li id="evRainLog"><span>today</span><div>Rain is likely on <time data-evday>fri 12/4</time>. I have a backup ready. <button class="textlink" data-goto="alert">see the alert</button></div></li>
+            <li><span>11/23</span>The invite went out to 30 people.</li>
+            <li><span>11/23</span>You approved and paid. Nothing else was charged.</li>
+          </ul>
+        </section>
+      </aside>
+      <div class="dock"><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 17 · an alert: rain on party night (3 days before). Blue = weather; one decision = black card on the right -->
+  <section class="screen inapp" data-id="alert">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item on" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-alert">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div id="alertAsk">
+        <div class="page-head"><button class="back" data-goto="event" aria-label="Back to your event">←</button>
+          <div><span class="state"><span aria-hidden="true">!</span> alert · 3 days before</span><h1 class="h-page">rain is likely on friday night</h1></div></div>
+        <div class="notif" aria-label="The notification you got">
+          <span class="n-app" data-pipface-small></span>
+          <div><span class="n-top"><b>NoFuss</b><span>tue 12/1 · 9:02am · also sent as a text</span></span>
+          <p>Rain likely fri 7–10pm for Drinks on the roof. I've got a backup ready. Tap to pick.</p></div>
+        </div>
+        <section class="wx" aria-label="The forecast">
+          <div class="wx-top"><span class="icon-disc" data-icon="weather" data-icon-color="var(--p-blue)"></span>
+            <div><b>~70% chance of rain, 7–10pm</b><span>fri 12/4 · Lower East Side · light rain, 48°F, wind 9 mph</span></div></div>
+          <div class="hours" aria-label="Chance of rain by hour"><div class="hr"><i style="height:20%"></i><b>~20%</b><span>6pm</span></div><div class="hr"><i style="height:60%"></i><b>~60%</b><span>7pm</span></div><div class="hr"><i style="height:70%"></i><b>~70%</b><span>8pm</span></div><div class="hr"><i style="height:70%"></i><b>~70%</b><span>9pm</span></div><div class="hr"><i style="height:45%"></i><b>~45%</b><span>10pm</span></div><div class="hr"><i style="height:20%"></i><b>~20%</b><span>11pm</span></div></div>
+          <span class="fc-chip wxchip">forecast · was ~30% on 11/27 · I check again thu, fri morning and 2 hours before</span>
+        </section>
+        <h2 class="h-sec">what should we do?</h2>
+        <div class="rows" role="radiogroup" aria-label="What to do about the rain">
+          <button class="opt-row" role="radio" aria-checked="true" data-rain="inside"><span class="tile-ic" data-icon="location" data-icon-color="var(--p-ink)"></span><span class="opt-txt"><b>move it inside</b><span class="sub">The bar room downstairs holds ~25. Free, and the venue is holding it for you until wed 12/2.</span></span><span class="opt-tag"><span class="tag">Pip's pick</span></span><span class="tile-tick" aria-hidden="true"></span></button>
+          <button class="opt-row" role="radio" aria-checked="false" data-rain="tent"><span class="tile-ic" data-icon="add" data-icon-color="var(--p-ink)"></span><span class="opt-txt"><b>add a canopy on the roof</b><span class="sub">A 10×20 ft tent, set up by 6pm. $180, still inside your $600 cap.</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button>
+          <button class="opt-row" role="radio" aria-checked="false" data-rain="keep"><span class="tile-ic" data-icon="weather" data-icon-color="var(--p-ink)"></span><span class="opt-txt"><b>keep it on the roof</b><span class="sub">I tell guests to bring a jacket and keep watching. If it gets worse, I ask again.</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button>
+        </div>
+        <h2 class="h-sec">what guests hear</h2>
+        <div class="msg-card">
+          <textarea id="rainMsg" rows="4" aria-label="The message to guests"></textarea>
+          <label class="switch-row"><input type="checkbox" id="rainText" checked><span class="sw" aria-hidden="true"></span><span><b>text the 18 guests who said texts are OK</b><span class="muted">The other 4 yeses see it on Luma. People who said no don't hear anything.</span></span></label>
+        </div>
+        </div>
+        <div class="paid" id="alertDone" hidden>
+          <span class="circle on big" aria-hidden="true"></span>
+          <h1 class="h-page" id="alertDoneT">it's inside now</h1>
+          <ul class="done-list" id="alertDoneList"></ul>
+          <button class="btn" data-goto="event">back to my event</button>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="alertSay">Rain looks likely on friday night. I already have a backup lined up; you just pick.</p></div>
+        <section class="needs" aria-label="Needs your OK" id="alertNeeds">
+          <div class="needs-head"><b>needs your OK</b><span class="count">1</span></div>
+          <div class="ok-item"><span class="circle"></span><div><b id="alertPickT">move it inside</b><span id="alertPickS">$0 · the bar room downstairs</span></div></div>
+          <button class="btn btn-light wide" id="alertGo">OK, move it inside</button>
+          <span class="fine on-dark">Nothing changes and nobody hears anything until you tap.</span>
+        </section>
+        <section class="also" aria-label="What Pip checked">
+          <p class="field-label">what I checked</p>
+          <ul class="checked">
+            <li><b>Weather</b> · Apple Weather and the National Weather Service agree: ~70%, 7–10pm</li>
+            <li><b>the venue</b> · the bar room is free fri night and fits ~25</li>
+            <li><b>Luma</b> · 22 yes, 4 maybe. ~16–20 likely to come either way</li>
+            <li><b>MTA</b> · no planned work on the F or J that night</li>
+          </ul>
+        </section>
+      </aside>
+      <div class="dock"><button class="btn dock-ok" id="alertDock">OK, move it inside</button><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 18 · party night: live check-in. Burgundy = big moment, pink accent -->
+  <section class="screen inapp" data-id="night">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item on" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-night">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="night">
+        <div class="page-head"><button class="back" data-goto="event" aria-label="Back to your event">←</button>
+          <div><span class="state live"><i aria-hidden="true"></i> live · fri 12/4 · 7:42pm</span><h1 class="h-page">it's party night</h1></div></div>
+        <section class="n-hero" aria-label="Who's here">
+          <div class="n-count"><b id="nHere">14</b><span>here now</span></div>
+          <div class="n-meta">
+            <div class="n-bar" aria-hidden="true"><i id="nBar"></i><span class="n-fc" title="forecast ~16–20"></span></div>
+            <span id="nLine">Forecast was ~16–20. Right on track.</span>
+            <button class="btn n-door" data-door>open door mode</button>
+          </div>
+        </section>
+        <h2 class="h-sec">three ways in</h2>
+        <div class="ways">
+          <div class="way"><span class="icon-disc sm" data-icon="checkin" data-icon-color="var(--p-ink)"></span><b>QR at the door</b><span>Put your phone or a tablet by the door. Guests scan it.</span><button class="ghost" data-door>show the QR</button></div>
+          <div class="way"><span class="icon-disc sm" data-icon="invite" data-icon-color="var(--p-ink)"></span><b>a link in their text</b><span>Guests tap “I'm here” from the message Pip sent at 7pm.</span></div>
+          <div class="way"><span class="icon-disc sm" data-icon="open" data-icon-color="var(--p-ink)"></span><b>a pop-up in the app</b><span>Guests with NoFuss get “You're here?” when they arrive.</span></div>
+        </div>
+        <div class="who">
+          <section class="who-col" aria-label="Here">
+            <div class="who-head"><b>here</b><span class="count" id="nHereN">13</span></div>
+            <ul class="guest-list" id="nHereList"></ul>
+          </section>
+          <section class="who-col" aria-label="Not here yet">
+            <div class="who-head"><b>not here yet</b><span class="count" id="nYetN">6</span></div>
+            <ul class="guest-list" id="nYetList"></ul>
+            <span class="muted">At 8:30 Pip sends one nudge to anyone not here: “On your way? Tap when you arrive.” Nobody gets more than one.</span>
+          </section>
+        </div>
+        <h2 class="h-sec">what guests see</h2>
+        <div class="gviews">
+          <figure class="gphone"><div class="gscreen">
+            <span class="g-from">NoFuss · 7:00pm</span>
+            <p class="g-sms">Drinks on the roof starts now! It's in the bar room downstairs. Tap when you arrive: <u>nofuss.app/in/roof</u></p>
+            <div class="g-link"><b>Drinks on the roof</b><span>You're on the list, Ana.</span><button class="g-btn" tabindex="-1">I'm here</button></div>
+          </div><figcaption><button class="textlink sm" data-goto="guestlink">the link in their text · open it</button></figcaption></figure>
+          <figure class="gphone"><div class="gscreen">
+            <div class="g-pop"><span class="g-face" data-pipface-small></span><div><b>you're at Drinks on the roof?</b><span>Tap to check in. Your host sees you're here.</span></div></div>
+            <div class="g-pop-btns"><button class="g-btn" tabindex="-1">check me in</button><button class="g-btn g-ghost" tabindex="-1">not yet</button></div>
+          </div><figcaption><button class="textlink sm" data-goto="guestapp">the pop-up in the app · open it</button></figcaption></figure>
+        </div>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="nSay">14 here, right on the forecast. Drinks are holding up fine. Enjoy it, I've got the door.</p></div>
+        <section class="calm-card" aria-label="Needs your OK">
+          <div class="needs-head"><b>needs your OK</b><span class="count light">0</span></div>
+          <div class="ok-item light"><span class="circle on"></span><div><b>nothing tonight</b><span>If something comes up, I'll ask here and text you.</span></div></div>
+        </section>
+        <section class="also" aria-label="The run of the night">
+          <p class="field-label">the run of the night</p>
+          <ul class="run">
+            <li class="done"><span>5:12</span>The order arrived. 8 wine, 30 beer, the kit, bites.</li>
+            <li class="done"><span>7:00</span>Doors. Check-in opened; the link went out.</li>
+            <li class="now"><span>7:42</span>Now · 14 here</li>
+            <li><span>8:30</span>One nudge to anyone not here yet</li>
+            <li><span>10:00</span>Wrap. Check-in closes.</li>
+            <li><span>sat</span><span>A thank-you text, and your recap · <button class="textlink" data-goto="dayafter">preview</button></span></li>
+          </ul>
+        </section>
+      </aside>
+      <div class="dock"><button class="btn dock-ok" data-door>open door mode</button><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 19 · the day after: forecast vs who came, 3 questions, what Pip learned, two messages that wait for an OK.
+       Olive = the big box, pink = small details. Pip's feeling follows how it went (happy / proud / sad). -->
+  <section class="screen inapp" data-id="dayafter">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item on" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-dayafter">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="da" id="daAsk">
+        <div class="page-head"><button class="back" data-goto="night" aria-label="Back to party night">←</button>
+          <div><span class="state"><span aria-hidden="true">✓</span> the day after · sat 12/5</span><h1 class="h-page">how did it go?</h1></div></div>
+        <section class="da-hero" aria-label="Forecast and who came">
+          <div class="da-txt">
+            <b id="daHead">18 came. The forecast said ~16–20.</b>
+            <span id="daSub">It held. 17 checked in and 1 told Pip the next morning.</span>
+          </div>
+          <div class="scale" aria-label="On one scale: invited 30, said yes 22, forecast 16 to 20, came 18">
+            <div class="sc-track"><span class="sc-yes" style="width:73.33%"></span><span class="sc-fc" style="left:53.33%;width:13.33%"></span><span class="sc-came" id="daCame" style="left:60.00%"></span></div>
+            <div class="sc-ticks"><span style="left:0.00%">0</span><span style="left:33.33%">10</span><span style="left:66.67%">20</span><span style="left:100.00%">30</span></div>
+            <div class="sc-key"><span><i class="k-yes"></i>22 said yes</span><span><i class="k-fc"></i>forecast ~16–20</span><span><i class="k-came"></i><span id="daKey">18 came</span></span><span>30 invited</span></div>
+          </div>
+        </section>
+        <h2 class="h-sec">three quick ones <span class="muted">· about 20 seconds</span></h2>
+        <div class="da-q">
+          <div class="qnum">1</div>
+          <div><b>roughly how many came?</b><span class="muted">Filled in from check-in. Change it if you counted differently.</span></div>
+          <div class="stepper sm"><button id="daMinus" aria-label="Fewer">–</button><input id="daCount" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="2" value="18" aria-label="How many came"><button id="daPlus" aria-label="More">+</button></div>
+        </div>
+        <div class="da-q">
+          <div class="qnum">2</div>
+          <div><b>how did the food and drinks go?</b></div>
+          <div class="pills" role="radiogroup" aria-label="How the food and drinks went">
+            <button class="pill" role="radio" aria-checked="false" data-dafood="out">ran out</button>
+            <button class="pill" role="radio" aria-checked="false" data-dafood="right">about right</button>
+            <button class="pill" role="radio" aria-checked="false" data-dafood="left">lots left over</button>
+          </div>
+        </div>
+        <div class="da-q">
+          <div class="qnum">3</div>
+          <div><b>one thing to change next time?</b><span class="muted">Optional.</span></div>
+          <input class="field" id="daNote" placeholder="e.g. start at 7:30, people came late" aria-label="One thing to change next time">
+        </div>
+        <button class="btn wide da-save" id="daSave">save</button>
+        </div>
+        <div class="paid" id="daDone" hidden>
+          <span class="circle on big" aria-hidden="true"></span>
+          <h1 class="h-page">saved. next time I'll know you better.</h1>
+          <p id="daDoneTxt"></p>
+          <button class="btn" data-goto="yourevents">see your events</button>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><span class="pip-face da-face" id="daFace" aria-hidden="true"></span><p class="bubble" id="daSay">The forecast held! 18 came, right inside ~16–20.</p></div>
+        <section class="needs" aria-label="Needs your OK">
+          <div class="needs-head"><b>needs your OK</b><span class="count" id="daOkN">2</span></div>
+          <div class="send-item" id="daThanks"><b>A thank-you to the 18 who came</b><p class="sms">Thanks for coming to Drinks on the roof last night! 🍸 It was a good one. – Alex</p><button class="btn btn-light" data-dasend="daThanks">OK, send it</button></div>
+          <div class="send-item" id="daMissed"><b>one message to the 4 who didn't check in</b><p class="sms">Did you make it to Drinks on the roof? Let Alex know you came: tap yes or no.</p><span class="fine on-dark" style="text-align:left">Only once. It makes your next forecast sharper.</span><button class="btn btn-light" data-dasend="daMissed">OK, send it</button></div>
+        </section>
+        <section class="also" aria-label="What Pip learned">
+          <p class="field-label">what I learned</p>
+          <div class="learned"><b id="daRate">82%</b><span id="daRateTxt">of your yeses came (18 of 22). Small free events usually get about 6 in 10, so your friends show up. Next time I plan a bit higher.</span></div>
+        </section>
+      </aside>
+      <div class="dock"><button class="btn dock-ok" id="daDock">save</button><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 26 · your events: the home after sign-in. Yellow / olive big boxes, pink details -->
+  <section class="screen inapp" data-id="yourevents">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item on" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-yourevents">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="home">
+        <div class="home-head">
+          <div><span class="muted">good morning, Alex · mon 11/23</span><h1 class="h-page">your events</h1></div>
+          <button class="btn home-new" data-goto="start">+ new event</button>
+        </div>
+
+        <h2 class="h-sec">hosting</h2>
+        <div class="hosting">
+          <button class="host-card hc-yellow" data-goto="event">
+            <span class="hc-state"><span aria-hidden="true">◷</span> upcoming · 11 days to go</span>
+            <b class="hc-title" data-evname>Drinks on the roof</b>
+            <span class="hc-meta">fri 12/4 · 7pm · the venue, Lower East Side</span>
+            <span class="hc-bar" aria-hidden="true"><i style="width:73%"></i></span>
+            <span class="hc-foot"><span>22 of 30 said yes · forecast ~16–20</span><span class="hc-ok">1 needs you</span></span>
+          </button>
+          <div class="host-card hc-olive">
+            <span class="hc-state"><span aria-hidden="true">○</span> on Luma · not planned yet</span>
+            <b class="hc-title">Book club holiday party</b>
+            <span class="hc-meta">sat 12/12 · 6pm · 14 invited · 9 going</span>
+            <span class="hc-foot"><span>Pip can pick up the details and the guest list.</span></span>
+            <button class="btn hc-go" data-goto="cover">plan with Pip</button>
+          </div>
+        </div>
+
+        <h2 class="h-sec">you're going to</h2>
+        <div class="going">
+          <div class="go-row"><span class="go-date"><b>27</b>nov</span><div><b>Friendsgiving at Maya's</b><span class="muted">fri 7pm · Maya's place, Bushwick · on Partiful</span><span class="go-pip"><span class="gp-face" data-pipface-small></span>Bring a side: Maya's list still needs a salad.</span></div></div>
+          <div class="go-row"><span class="go-date"><b>3</b>dec</span><div><b>Design Week closing party</b><span class="muted">thu 8pm · Pioneer Works, Red Hook · on Luma</span><span class="go-pip"><span class="gp-face" data-pipface-small></span>Ana and Ben are going too. The F is running slow that night; leave by 7:15.</span></div></div>
+        </div>
+
+        <div class="going" id="savedRecs" aria-live="polite"></div>
+        <div class="recs-head"><h2 class="h-sec">you might like</h2><button class="textlink" data-goto="recs">see more</button></div>
+        <div class="recs" id="recs" aria-live="polite"></div>
+        <p class="fine left">Swipe one away and the next comes in. Each swipe teaches Pip what you like.</p>
+
+        <details class="past">
+          <summary><b>past events</b><span class="muted">2 · folded away</span></summary>
+          <div class="past-row"><b>Sofia's birthday</b><span class="muted">sat 10/18 · 14 came · forecast was ~12–15 ✓</span></div>
+          <div class="past-row"><b>Studio open house</b><span class="muted">thu 9/25 · 31 came · forecast was ~35–40</span></div>
+        </details>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble">Morning! One thing needs you this week; everything else is on track.</p></div>
+        <section class="needs" aria-label="Needs your OK, across events">
+          <div class="needs-head"><b>needs your OK</b><span class="count">1</span></div>
+          <div class="ok-item"><span class="circle"></span><div><b>Rain plan · Drinks on the roof</b><span>~70% rain fri night. Move inside, add a canopy, or keep it.</span></div></div>
+          <button class="btn btn-light wide" data-goto="alert">see the rain plan</button>
+        </section>
+        <section class="also" aria-label="This week">
+          <p class="field-label">this week</p>
+          <ul class="run">
+            <li class="now"><span>today</span>All quiet. 22 of 30 said yes.</li>
+            <li><span>tue</span>One reminder to the 2 who haven't replied</li>
+            <li><span>thu</span>Weather and subway check for the roof</li>
+            <li><span>fri</span>Friendsgiving at Maya's · you're a guest</li>
+          </ul>
+        </section>
+      </aside>
+      <div class="dock"><button class="btn dock-ok" data-goto="alert">1 needs your OK · rain plan</button><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 25 · settings: make Pip yours. 1 color, then 2 shape; name, voice, how Pip talks. Live preview. -->
+  <section class="screen inapp" data-id="pipset">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item on" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-pipset">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="set">
+        <h1 class="h-page">settings</h1>
+        <div class="set-tabs" role="tablist" aria-label="Settings">
+          <button role="tab" aria-selected="true">make Pip yours</button>
+          <button role="tab" aria-selected="false" data-goto="alerts">alerts</button>
+          <button role="tab" aria-selected="false" data-goto="handson">how hands-on</button>
+          <button role="tab" aria-selected="false" data-goto="apps">connected apps</button>
+          <button role="tab" aria-selected="false" data-goto="account">account</button>
+        </div>
+        <section class="stage" id="pStage" aria-label="Preview">
+          <div class="stage-pip" id="pBig" aria-hidden="true"></div>
+          <div class="stage-side">
+            <p class="bubble" id="pLine"></p>
+            <div class="stage-bits" aria-hidden="true">
+              <span class="sb-launch"><span class="sb-face" id="pSmall"></span><span id="pAsk">tell Pip what you need</span></span>
+              <span class="sb-row"><span id="pTiny1"></span><span id="pTiny2"></span><span id="pTiny3"></span></span>
+            </div>
+          </div>
+        </section>
+        <div class="set-step"><span class="qnum">1</span><h2 class="h-sec">pick a color</h2></div>
+        <div class="swatches" role="radiogroup" aria-label="Pip's color"><button class="swatch" role="radio" aria-checked="false" data-pcolor="yellow" aria-label="yellow" style="--sw:var(--p-yellow)"><i></i><span>yellow</span></button><button class="swatch" role="radio" aria-checked="false" data-pcolor="orange" aria-label="orange" style="--sw:var(--p-orange)"><i></i><span>orange</span></button><button class="swatch" role="radio" aria-checked="false" data-pcolor="pink" aria-label="pink" style="--sw:var(--p-pink)"><i></i><span>pink</span></button><button class="swatch" role="radio" aria-checked="false" data-pcolor="burgundy" aria-label="burgundy" style="--sw:var(--p-burgundy)"><i></i><span>burgundy</span></button><button class="swatch" role="radio" aria-checked="false" data-pcolor="olive" aria-label="olive" style="--sw:var(--p-olive)"><i></i><span>olive</span></button><button class="swatch" role="radio" aria-checked="false" data-pcolor="blue" aria-label="blue" style="--sw:var(--p-blue)"><i></i><span>blue</span></button></div>
+        <div class="set-step"><span class="qnum">2</span><h2 class="h-sec">then a shape</h2></div>
+        <div class="shapes" role="radiogroup" aria-label="Pip's shape"><button class="shape" role="radio" aria-checked="false" data-pshape="circle" aria-label="circle"><span class="sh-pip"></span><span>circle</span></button><button class="shape" role="radio" aria-checked="false" data-pshape="arch" aria-label="arch"><span class="sh-pip"></span><span>arch</span></button><button class="shape" role="radio" aria-checked="false" data-pshape="pill" aria-label="pill"><span class="sh-pip"></span><span>pill</span></button><button class="shape" role="radio" aria-checked="false" data-pshape="square" aria-label="square"><span class="sh-pip"></span><span>square</span></button><button class="shape" role="radio" aria-checked="false" data-pshape="dome" aria-label="dome"><span class="sh-pip"></span><span>dome</span></button></div>
+        <div class="set-step"><span class="qnum">3</span><h2 class="h-sec">a name</h2></div>
+        <input class="field set-name" id="pName" maxlength="14" value="Pip" aria-label="Pip's name" autocomplete="off">
+        <div class="set-step"><span class="qnum">4</span><h2 class="h-sec">a voice</h2><span class="muted">for when you talk to it</span></div>
+        <div class="rows" role="radiogroup" aria-label="Voice">
+          <div class="voice"><button class="opt-row" role="radio" aria-checked="false" data-pvoice="warm"><span class="opt-txt"><b>warm</b><span class="sub">Slower, low. Good for the mornings.</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button><button class="play" data-play="warm" aria-label="Hear the warm voice">▶</button></div>
+          <div class="voice"><button class="opt-row" role="radio" aria-checked="false" data-pvoice="bright"><span class="opt-txt"><b>bright</b><span class="sub">Quick and upbeat.</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button><button class="play" data-play="bright" aria-label="Hear the bright voice">▶</button></div>
+          <div class="voice"><button class="opt-row" role="radio" aria-checked="false" data-pvoice="calm"><span class="opt-txt"><b>calm</b><span class="sub">Even and quiet. Just the news.</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button><button class="play" data-play="calm" aria-label="Hear the calm voice">▶</button></div>
+        </div>
+        <div class="set-step"><span class="qnum">5</span><h2 class="h-sec">how it talks</h2></div>
+        <div class="rows" role="radiogroup" aria-label="How Pip talks">
+          <button class="opt-row" role="radio" aria-checked="false" data-ptalk="playful"><span class="opt-txt"><b>a little playful</b><span class="sub">“22 yeses! Drinks are sorted. Go pick an outfit.”</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button>
+          <button class="opt-row" role="radio" aria-checked="false" data-ptalk="facts"><span class="opt-txt"><b>just the facts</b><span class="sub">“22 of 30 said yes. The order covers ~20.”</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button>
+        </div>
+        <p class="fine left">Guests never see Pip's name or color. They only hear from you.</p>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="pSay">Make me yours. Color first, then a shape. It saves as you go.</p></div>
+        <section class="also" aria-label="Where Pip shows up">
+          <p class="field-label">where you'll see me</p>
+          <ul>
+            <li>Next to everything I tell you, like this</li>
+            <li>The “tell Pip what you need” button, bottom right</li>
+            <li>On your event's poster, until you add a photo</li>
+            <li>In the chat, when you ask me anything</li>
+          </ul>
+        </section>
+        <button class="ghost" id="pReset">back to the default Pip</button>
+      </aside>
+      <div class="dock"><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 18 · when Pip checks: every timed moment in one place. Olive = done, yellow = next, white dashed = later; pink small details -->
+  <section class="screen inapp" data-id="moments">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item on" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-moments">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="mom">
+        <div class="page-head"><button class="back" data-goto="event" aria-label="Back to your event">←</button>
+          <div><span class="muted" data-evname>Drinks on the roof</span><h1 class="h-page">when Pip checks</h1></div></div>
+        <p class="mom-lead">Seven moments, from now to the day after. At the first five I check the <b>weather</b>, the <b>subway</b>, <b>traffic</b> and <b>holidays</b>. You only hear from me when something is big.</p>
+        <ol class="mtl">
+          <li class="m m-done">
+            <div class="m-when"><b>today</b><span>mon 11/23</span></div>
+            <div class="m-card">
+              <div class="m-top"><b>the plan and the invite</b><span class="m-state">✓ done</span></div>
+              <div class="m-checks"><span class="m-chip"><i></i><b>weather</b> · too early to tell</span><span class="m-chip"><i></i><b>holidays</b> · Thanksgiving week, some guests travel</span></div>
+              <p>The invite went out to 30. I planned for ~16–20 and set up everything below.</p>
+            </div>
+          </li>
+          <li class="m m-now">
+            <div class="m-when"><b>a week before</b><span>fri 11/27</span></div>
+            <div class="m-card">
+              <div class="m-top"><b>first real look</b><span class="m-state">next up</span></div>
+              <div class="m-checks"><span class="m-chip"><i></i><b>weather</b></span><span class="m-chip"><i></i><b>subway</b></span><span class="m-chip"><i></i><b>traffic</b></span><span class="m-chip"><i></i><b>holidays</b></span></div>
+              <p>If anything looks big, you get a heads-up with a plan. Otherwise I just keep watching, quietly.</p>
+            </div>
+          </li>
+          <li class="m m-next">
+            <div class="m-when"><b>3 days before</b><span>tue 12/1</span></div>
+            <div class="m-card">
+              <div class="m-top"><b>closer look, and the one reminder</b><span class="m-state">coming up</span></div>
+              <div class="m-checks"><span class="m-chip"><i></i><b>weather</b></span><span class="m-chip"><i></i><b>subway</b></span><span class="m-chip"><i></i><b>traffic</b></span><span class="m-chip"><i></i><b>holidays</b></span><span class="m-chip"><i></i><b>RSVPs</b></span></div>
+              <p>10am: one reminder to the people who haven't replied. Nobody gets more than one.</p><button class="textlink" data-goto="alert">see what a heads-up looks like</button>
+            </div>
+          </li>
+          <li class="m m-next">
+            <div class="m-when"><b>the day, 8am</b><span>fri 12/4</span></div>
+            <div class="m-card">
+              <div class="m-top"><b>morning check</b><span class="m-state">coming up</span></div>
+              <div class="m-checks"><span class="m-chip"><i></i><b>weather</b></span><span class="m-chip"><i></i><b>subway</b></span><span class="m-chip"><i></i><b>traffic</b></span><span class="m-chip"><i></i><b>holidays</b></span><span class="m-chip"><i></i><b>delivery</b></span></div>
+              <p>The order is confirmed for 4–6pm. I send you the run of the night.</p>
+            </div>
+          </li>
+          <li class="m m-next">
+            <div class="m-when"><b>2 hours before</b><span>fri 12/4 · 5pm</span></div>
+            <div class="m-card">
+              <div class="m-top"><b>last check</b><span class="m-state">coming up</span></div>
+              <div class="m-checks"><span class="m-chip"><i></i><b>subway</b> · live</span><span class="m-chip"><i></i><b>traffic</b> · live</span><span class="m-chip"><i></i><b>delivery</b> · arrived?</span></div>
+              <p>If a line is down, guests on it get a text with another way there (only those who allowed texts).</p>
+            </div>
+          </li>
+          <li class="m m-next">
+            <div class="m-when"><b>when it starts</b><span>fri 12/4 · 7pm</span></div>
+            <div class="m-card">
+              <div class="m-top"><b>doors</b><span class="m-state">coming up</span></div>
+              <div class="m-checks"><span class="m-chip"><i></i><b>check-in</b> · opens</span></div>
+              <p>Check-in opens and guests get their “I'm here” link.</p><button class="textlink" data-goto="night">see party night</button>
+            </div>
+          </li>
+          <li class="m m-next">
+            <div class="m-when"><b>the day after</b><span>sat 12/5</span></div>
+            <div class="m-card">
+              <div class="m-top"><b>how it went</b><span class="m-state">coming up</span></div>
+              <div class="m-checks"><span class="m-chip"><i></i><b>who came</b></span><span class="m-chip"><i></i><b>the food</b></span></div>
+              <p>A thank-you waits for your OK, and I learn your show rate for next time.</p><button class="textlink" data-goto="dayafter">see the day after</button>
+            </div>
+          </li>
+        </ol>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble">I check on my own. You only hear from me when something crosses the line below.</p></div>
+        <section class="big-card" aria-label="What counts as big">
+          <b class="bc-h">what counts as big</b>
+          <ul>
+            <li><span>weather</span>Rain or snow over 50%, or below 35°F</li>
+            <li><span>subway</span>A line your guests use is down, or over 15 min late</li>
+            <li><span>traffic</span>More than 20 min extra to get there</li>
+            <li><span>holidays</span>A holiday, parade or marathon nearby</li>
+          </ul>
+          <span class="bc-foot">Below that, I just keep watching.</span>
+          <button class="ghost" data-goto="alerts">change what counts</button>
+        </section>
+        <section class="also" aria-label="Who hears">
+          <p class="field-label">who hears</p>
+          <div class="hears"><b>you</b><span>A notification in the app and a text.</span></div>
+          <div class="hears"><b>guests</b><span>A text, only when the plan changes and only if they said texts are OK (18 of 22).</span></div>
+        </section>
+      </aside>
+      <div class="dock"><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 19 · settings: alerts. What Pip watches, what counts as big, when it checks, how you and guests hear. Picked = green (olive). -->
+  <section class="screen inapp" data-id="alerts">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item on" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-alerts">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="set">
+        <h1 class="h-page">settings</h1>
+        <div class="set-tabs" role="tablist" aria-label="Settings">
+          <button role="tab" aria-selected="false" data-goto="pipset">make Pip yours</button>
+          <button role="tab" aria-selected="true">alerts</button>
+          <button role="tab" aria-selected="false" data-goto="handson">how hands-on</button>
+          <button role="tab" aria-selected="false" data-goto="apps">connected apps</button>
+          <button role="tab" aria-selected="false" data-goto="account">account</button>
+        </div>
+        <div class="set-step"><span class="qnum">1</span><h2 class="h-sec">what I watch, and what counts as big</h2></div>
+        <p class="fine left">Below these lines I keep watching quietly. Above them, you hear from me with a plan.</p>
+        <div class="al-watch">
+          <div class="al-row"><div class="al-h"><span class="icon-disc sm" data-icon="weather" data-icon-color="var(--p-ink)"></span><label class="switch-row"><input type="checkbox" id="alW" checked><span class="sw" aria-hidden="true"></span><span><b>weather</b><span class="muted">Apple Weather and the National Weather Service</span></span></label></div>
+            <div class="al-set"><span class="al-lbl">rain or snow over</span><div class="range"><input type="range" id="alRain" min="20" max="80" step="10" value="50" aria-label="Rain chance that counts as big"><output id="alRainV">50%</output></div>
+            <span class="al-lbl">or colder than</span><div class="pills al-pills" role="radiogroup"><button class="pill" role="radio" aria-checked="false" data-al="cold" data-v="30">30°F</button><button class="pill" role="radio" aria-checked="true" data-al="cold" data-v="35">35°F</button><button class="pill" role="radio" aria-checked="false" data-al="cold" data-v="40">40°F</button></div></div></div>
+          <div class="al-row"><div class="al-h"><span class="icon-disc sm" data-icon="location" data-icon-color="var(--p-ink)"></span><label class="switch-row"><input type="checkbox" id="alS" checked><span class="sw" aria-hidden="true"></span><span><b>subway</b><span class="muted">The MTA, for the lines your guests use</span></span></label></div>
+            <div class="al-set"><span class="al-lbl">a line is down, or late by more than</span><div class="pills al-pills" role="radiogroup"><button class="pill" role="radio" aria-checked="false" data-al="subway" data-v="10">10 min</button><button class="pill" role="radio" aria-checked="true" data-al="subway" data-v="15">15 min</button><button class="pill" role="radio" aria-checked="false" data-al="subway" data-v="30">30 min</button></div></div></div>
+          <div class="al-row"><div class="al-h"><span class="icon-disc sm" data-icon="countdown" data-icon-color="var(--p-ink)"></span><label class="switch-row"><input type="checkbox" id="alT" checked><span class="sw" aria-hidden="true"></span><span><b>traffic</b><span class="muted">Google Maps and Apple Maps</span></span></label></div>
+            <div class="al-set"><span class="al-lbl">more than this extra to get there</span><div class="pills al-pills" role="radiogroup"><button class="pill" role="radio" aria-checked="false" data-al="traffic" data-v="10">10 min</button><button class="pill" role="radio" aria-checked="true" data-al="traffic" data-v="20">20 min</button><button class="pill" role="radio" aria-checked="false" data-al="traffic" data-v="30">30 min</button></div></div></div>
+          <div class="al-row"><div class="al-h"><span class="icon-disc sm" data-icon="party" data-icon-color="var(--p-ink)"></span><label class="switch-row"><input type="checkbox" id="alH" checked><span class="sw" aria-hidden="true"></span><span><b>holidays and big events</b><span class="muted">Holidays, parades, marathons, street closures nearby</span></span></label></div></div>
+        </div>
+        <div class="set-step"><span class="qnum">2</span><h2 class="h-sec">when I check</h2></div>
+        <div class="pills al-moms" aria-label="When Pip checks"><button class="pill" role="checkbox" aria-checked="true" data-mom="week">a week before</button><button class="pill" role="checkbox" aria-checked="true" data-mom="3d">3 days before</button><button class="pill" role="checkbox" aria-checked="true" data-mom="day">the day, 8am</button><button class="pill" role="checkbox" aria-checked="true" data-mom="2h">2 hours before</button><button class="pill" role="checkbox" aria-checked="true" data-mom="start">when it starts</button></div>
+        <p class="fine left">The day after always happens: that's how your next forecast gets sharper.</p>
+        <div class="set-step"><span class="qnum">3</span><h2 class="h-sec">how you hear</h2></div>
+        <div class="al-card">
+          <label class="switch-row"><input type="checkbox" id="alApp" checked><span class="sw" aria-hidden="true"></span><span><b>a notification in the app</b><span class="muted">Always on for anything that needs your OK.</span></span></label>
+          <label class="switch-row"><input type="checkbox" id="alText" checked><span class="sw" aria-hidden="true"></span><span><b>a text</b><span class="muted">To the number on your account.</span></span></label>
+          <label class="switch-row"><input type="checkbox" id="alMail" ><span class="sw" aria-hidden="true"></span><span><b>an email</b><span class="muted">A short one, with the plan.</span></span></label>
+          <label class="switch-row"><input type="checkbox" id="alQuiet" checked><span class="sw" aria-hidden="true"></span><span><b>quiet hours, 10pm–8am</b><span class="muted">Nothing reaches you then unless it is happening right now.</span></span></label>
+        </div>
+        <div class="set-step"><span class="qnum">4</span><h2 class="h-sec">what guests hear</h2></div>
+        <div class="al-card">
+          <label class="switch-row"><input type="checkbox" id="alGuests" checked><span class="sw" aria-hidden="true"></span><span><b>text guests when the plan changes</b><span class="muted">Only guests who said texts are OK. Never 10pm–8am.</span></span></label>
+          <div class="al-rule"><span class="circle on"></span><span><b>I always ask you first.</b> Every text to guests waits for your OK, like the rain plan.</span></div>
+        </div>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="alSay">Set the lines once; I'll use them for every event.</p></div>
+        <section class="big-card" aria-label="With these settings">
+          <b class="bc-h">with these settings</b>
+          <span id="alCount" class="al-count"></span>
+          <ul id="alList" class="al-list"></ul>
+          <span class="bc-foot" id="alFoot"></span>
+        </section>
+      </aside>
+      <div class="dock"><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- door mode: full-screen QR for the door -->
+  <div class="door" id="door" hidden role="dialog" aria-modal="true" aria-label="Door mode">
+    <button class="icon-btn door-x" data-door-close aria-label="Close door mode">×</button>
+    <div class="door-card">
+      <p class="door-ev">Drinks on the roof</p>
+      <h2>scan to check in</h2>
+      <div class="qr" id="qr" aria-label="Check-in QR code"></div>
+      <p class="door-n"><b id="doorN">14</b> here · welcome!</p>
+      <button class="ghost door-demo" id="doorDemo">demo: someone scans</button>
+    </div>
+  </div>
+
+  <!-- the chat with Pip: small pop-up bottom right; ⤢ = full screen with Pip's reasoning -->
+  <aside class="chat" id="chat" aria-label="Chat with Pip" hidden>
+    <div class="chat-head"><span class="c-face" data-pipface-small></span><b data-pipname>Pip</b><span class="chat-mode" id="chatMode"></span><span class="grow"></span>
+      <button class="icon-btn" id="chatExpand" aria-label="Open the full chat, with Pip's reasoning">⤢</button><button class="icon-btn" id="chatClose" aria-label="Close the chat">×</button></div>
+    <div class="chat-log" id="chatLog" aria-live="polite"></div>
+    <form class="chat-ask" id="chatForm"><div class="composer"><input id="chatInput" aria-label="Message Pip" placeholder="Tell Pip what to do, e.g. 'move it to Saturday'…" autocomplete="off">
+      <button type="button" class="c-mic" aria-label="Talk to Pip" data-ri="mic"></button><button type="submit" class="c-send" aria-label="Send" hidden>↑</button></div></form>
+  </aside>
+<!-- 17 · events for you (flow.md row 17; Mari's wireframe): the "see more" behind "you might like".
+       Grouped: friends going · nearby · Pip's picks. Same cards and the same "I'm interested" as the home; swiping teaches Pip. -->
+  <section class="screen inapp" data-id="recs">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item on" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-recs">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="home">
+          <div class="page-head"><button class="back" data-goto="yourevents" aria-label="Back to your events">←</button>
+            <div><h1 class="h-page">events for you</h1><span class="muted">picked by Pip from three places</span></div></div>
+          <div class="pills" role="radiogroup" aria-label="Show">
+            <button class="pill" role="radio" aria-checked="true" data-rf="all">all</button>
+            <button class="pill" role="radio" aria-checked="false" data-rf="friends going">friends going</button>
+            <button class="pill" role="radio" aria-checked="false" data-rf="nearby">nearby</button>
+            <button class="pill" role="radio" aria-checked="false" data-rf="Pip's pick">Pip's picks</button>
+          </div>
+          <div id="recGroups"></div>
+          <p class="fine left">Sample events in the prototype. Nothing is booked or shared until you tap.</p>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="recSay">I look at who you know is going, what's near you, and what you've liked before. Swipe away what's not for you and I'll learn.</p></div>
+        <section class="calm-card" aria-label="What Pip learned">
+          <b>what I've learned from you</b>
+          <ul class="run" id="recLearn"><li class="now"><span>so far</span>You host cocktail parties and dinners, mostly fridays.</li></ul>
+        </section>
+        <section class="also" aria-label="Good to know">
+          <p class="field-label">good to know</p>
+          <ul><li>Friends only show up if they share their RSVPs on Luma or Partiful.</li><li>Your interests stay on your account. Nobody sees them.</li></ul>
+        </section>
+      </aside>
+      <div class="dock"><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 22 · guest: the check-in link (flow.md row 22). No app, no account. Tapping it checks Lily in on the host's party night. -->
+  <section class="screen onb" data-id="guestlink">
+    <header class="onb-top"><button class="back" data-goto="night" aria-label="Back to party night">←</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></header>
+    <main class="onb-col">
+      <p class="fine">What a guest sees from the text, the email or the QR code. No app, no account.</p>
+      <div class="g-card">
+        <div class="g-poster"><span class="g-when">fri 12/4 · 7pm</span><b data-evname>Drinks on the roof</b><span>hosted by Alex</span></div>
+        <span class="muted g-where" id="glWhere">The bar room downstairs, 120 Grand St</span>
+        <div id="glStep" class="g-step">
+          <p class="g-q">Hi Lily! Let Alex know where you are.</p>
+          <button class="btn wide" data-gl="here">I'm here</button>
+          <button class="btn btn-light wide" data-gl="way">on my way</button>
+        </div>
+        <div id="glDone" class="g-done" hidden><span class="circle on big" aria-hidden="true"></span><p class="g-q" id="glDoneTxt"></p><button class="textlink" data-gl="undo">change</button></div>
+        <p class="fine">Alex only sees that you're here or on your way. Nothing else is shared.</p>
+      </div>
+      <div class="g-mirror" id="glMirror"><span>on Alex's screen</span><b id="glMirrorN">14 here</b><button class="textlink sm" data-goto="night">see the host's party night →</button></div>
+    </main>
+  </section>
+
+  <!-- 23 · guest: the app pop-up (flow.md row 23). Three moments: 7pm (interactive), the 8:30 nudge, the day-after text.
+       Guests see the plain NoFuss Pip, never the host's Pip name or color. -->
+  <section class="screen onb" data-id="guestapp">
+    <header class="onb-top"><button class="back" data-goto="night" aria-label="Back to party night">←</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></header>
+    <main class="onb-col xwide">
+      <p class="fine">A guest with the NoFuss app: Theo, who said yes. Each moment only happens if the one before didn't check him in.</p>
+      <div class="ga-moments">
+        <figure class="ga-m">
+          <figcaption><span class="qnum">1</span>fri 7:00pm · when it starts</figcaption>
+          <div class="ga-lock"><span class="ga-time">7:00</span>
+            <div class="ga-push"><span class="ga-face" data-pip-plain></span><div><b>Drinks on the roof starts now</b><span id="gaTxt">Check in so Alex knows you're coming, or that you got here.</span>
+              <div class="ga-acts" id="gaActs"><button class="ghost sm" data-ga="way">on my way</button><button class="btn sm" data-ga="here">I'm here</button></div></div></div>
+          </div>
+        </figure>
+        <figure class="ga-m" id="gaNudge">
+          <figcaption><span class="qnum">2</span>8:30pm · only if "on my way" and not here yet</figcaption>
+          <div class="ga-lock dim"><span class="ga-time">8:30</span>
+            <div class="ga-push"><span class="ga-face" data-pip-plain></span><div><b>Drinks on the roof</b><span>Don't forget to check in when you get there.</span></div></div></div>
+        </figure>
+        <figure class="ga-m" id="gaText">
+          <figcaption><span class="qnum">3</span>sat morning · one text, only if he never checked in</figcaption>
+          <div class="ga-sms"><span class="g-from">NoFuss</span><p>Did you make it to Drinks on the roof? Let Alex know you came: <u>nofuss.app/in/roof</u></p></div>
+        </figure>
+      </div>
+      <p class="fine" id="gaNote">One nudge at most, and one text the day after. Nobody gets more than that.</p>
+    </main>
+  </section>
+
+  <!-- 27 · vendors & places (flow.md row 27; Mari's wireframe). Both paths.
+       A vendor's change waits here with a before and after (black = needs your OK). Your vendors follow the answers,
+       checkout and the rain plan (EV, OKS). Find vendors: Pip shortlists 3 per category; adding one asks you first. -->
+  <section class="screen inapp" data-id="vendors">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item on" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-vendors">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="home">
+          <div class="home-head"><div><span class="muted">for <span data-evname>Drinks on the roof</span>, and everything you book</span><h1 class="h-page">vendors &amp; places</h1></div></div>
+
+          <section class="v-change" id="vChange" aria-label="A change waiting for you">
+            <div class="v-change-head"><b>a vendor wants to change something</b><span class="count">1</span></div>
+            <div class="v-swap">
+              <span class="v-from">Instacart · the drinks order</span>
+              <span>The Pinot Noir is out of stock that day. They suggest a Merlot at the same price.</span>
+              <div class="ba"><span class="k">before</span><span><s>Pinot Noir, 4 bottles</s></span><span class="k">after</span><span>Merlot, 4 bottles</span><span class="k">cost</span><span>no change</span></div>
+            </div>
+            <div class="v-acts"><button class="btn btn-light" data-vswap="ok">approve the swap</button><button class="textlink on-dark" data-vswap="other">ask for something else</button></div>
+          </section>
+
+          <h2 class="h-sec">your vendors</h2>
+          <div class="going" id="vMine"></div>
+
+          <h2 class="h-sec">find vendors</h2>
+          <div class="v-cats" role="tablist" aria-label="Find vendors">
+            <button class="v-cat" data-goto="place" data-place-from="vendors"><span class="icon-disc sm" data-icon="location" data-icon-color="var(--p-ink)"></span><b>places</b><span>OpenTable · Resy · Peerspace</span></button>
+            <button class="v-cat" role="tab" aria-selected="false" data-vcat="food"><span class="icon-disc sm" data-icon="food" data-icon-color="var(--p-ink)"></span><b>food &amp; catering</b><span>caterers · Uber Eats</span></button>
+            <button class="v-cat" role="tab" aria-selected="false" data-vcat="drinks"><span class="icon-disc sm" data-icon="drinks" data-icon-color="var(--p-ink)"></span><b>drinks</b><span>Instacart · local shops</span></button>
+            <button class="v-cat" role="tab" aria-selected="false" data-vcat="help"><span class="icon-disc sm" data-icon="dayof" data-icon-color="var(--p-ink)"></span><b>rentals &amp; help</b><span>tents, chairs · TaskRabbit</span></button>
+          </div>
+          <section class="v-short" id="vShort" hidden aria-live="polite"></section>
+          <p class="fine left">Names and prices are sample data in the prototype. Adding a vendor never books it: it waits for your OK, like checkout.</p>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="vSay">Vendors talk to me, and I bring every change to you. Nothing changes on its own.</p></div>
+        <section class="calm-card" aria-label="How changes work">
+          <b>how changes work</b>
+          <ul class="run">
+            <li><span>1</span>A vendor proposes a change.</li>
+            <li><span>2</span>I show it here, with the before and after.</li>
+            <li><span>3</span>You approve it, or ask for something else.</li>
+          </ul>
+          <span class="muted">Small things, like a confirmed delivery time, just go in the log.</span>
+        </section>
+        <section class="also" aria-label="The log">
+          <p class="field-label">the log</p>
+          <ul id="vLog"><li>Instacart confirmed delivery fri 4–6pm.</li><li>The venue has your guest count (~20).</li></ul>
+        </section>
+      </aside>
+      <div class="dock"><button class="btn dock-ok" id="vDock" data-vswap="ok">approve the swap</button><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 25b · settings: how hands-on. The same 3 choices as the last question (q5), and what each one means, action by action.
+       Rules from context/decisions.md (10/26, 11/13) stay "asks you first" whatever the host picks. -->
+  <section class="screen inapp" data-id="handson">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item on" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-handson">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="set">
+          <h1 class="h-page">settings</h1>
+          <div class="set-tabs" role="tablist" aria-label="Settings"><button role="tab" aria-selected="false" data-goto="pipset">make Pip yours</button><button role="tab" aria-selected="false" data-goto="alerts">alerts</button><button role="tab" aria-selected="true">how hands-on</button><button role="tab" aria-selected="false" data-goto="apps">connected apps</button><button role="tab" aria-selected="false" data-goto="account">account</button></div>
+          <div class="set-step"><span class="qnum">1</span><h2 class="h-sec">how much do you want to see?</h2></div>
+          <div class="rows" role="radiogroup" aria-label="How hands-on" id="handsRows">
+            <button class="opt-row" role="radio" aria-checked="false" data-hands="all"><span class="tile-ic" data-icon="why" data-icon-color="var(--p-ink)"></span><span class="opt-txt"><b>show me everything</b><span class="sub">Every invite, order and change.</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button>
+            <button class="opt-row" role="radio" aria-checked="false" data-hands="mid"><span class="tile-ic" data-icon="approve" data-icon-color="var(--p-ink)"></span><span class="opt-txt"><b>somewhere in between</b><span class="sub">Big decisions and money. Pip does the rest.</span></span><span class="opt-tag"><span class="tag">suggested</span></span><span class="tile-tick" aria-hidden="true"></span></button>
+            <button class="opt-row" role="radio" aria-checked="false" data-hands="money"><span class="tile-ic" data-icon="order" data-icon-color="var(--p-ink)"></span><span class="opt-txt"><b>just ask me about money</b><span class="sub">You approve payments. Pip handles the rest.</span></span><span class="opt-tag"></span><span class="tile-tick" aria-hidden="true"></span></button>
+          </div>
+          <div class="set-step"><span class="qnum">2</span><h2 class="h-sec">what that means, for Drinks on the roof</h2></div>
+          <ul class="acts hands-acts" id="handsActs"></ul>
+          <p class="fine left">Levels marked "rule" stay the same whatever you pick: NoFuss checks them in code, not just in Pip's instructions.</p>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="handsSay"></p></div>
+        <section class="calm-card" aria-label="Always">
+          <b>always, whatever you pick</b>
+          <ul class="run">
+            <li><span>money</span>Every payment waits for your tap, under your cap.</li>
+            <li><span>guests</span>The first invite waits for your OK.</li>
+            <li><span>plans</span>Date, time or place: you decide, because Luma emails every guest.</li>
+            <li><span>never</span>No messages 10pm–8am, no fake urgency.</li>
+          </ul>
+        </section>
+      </aside>
+      <div class="dock"><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 25c · settings: account. Sign-in (no passwords), who it's for, your data and guests' data, sign out, delete. -->
+  <section class="screen inapp" data-id="account">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item on" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-account">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="set">
+          <h1 class="h-page">settings</h1>
+          <div class="set-tabs" role="tablist" aria-label="Settings"><button role="tab" aria-selected="false" data-goto="pipset">make Pip yours</button><button role="tab" aria-selected="false" data-goto="alerts">alerts</button><button role="tab" aria-selected="false" data-goto="handson">how hands-on</button><button role="tab" aria-selected="false" data-goto="apps">connected apps</button><button role="tab" aria-selected="true">account</button></div>
+          <section class="acct-card" aria-label="You">
+            <span class="ri-you acct-av">A</span>
+            <div><b>Alex</b><span class="muted">alex@example.com · signed in with Google</span></div>
+            <button class="ghost sm" data-todo="Change your name or photo. In the prototype it stays Alex.">edit</button>
+          </section>
+          <div class="cover-row">
+            <div class="cover-label"><span class="tile-ic" data-icon="checkin" data-icon-color="var(--p-ink)"></span><div><b>signing in</b><span>No passwords. Google, Apple or a link by email.</span></div></div>
+            <div class="pills"><span class="pill static on-pill">Google ✓</span><button class="pill" data-todo="Adds Apple as a second way in. Not in the prototype.">add Apple</button><button class="pill" data-todo="Sends a sign-in link to your email. Not in the prototype.">email link</button></div>
+          </div>
+          <div class="cover-row">
+            <div class="cover-label"><span class="tile-ic" data-icon="networking" data-icon-color="var(--p-ink)"></span><div><b>who's this for?</b><span>Shapes your home screen. You picked it when you signed up.</span></div></div>
+            <div class="pills" role="radiogroup" aria-label="Who's this for"><button class="pill" role="radio" aria-checked="true" data-acct-who="me">just me</button><button class="pill" role="radio" aria-checked="false" data-acct-who="org">my organization</button></div>
+            <span class="muted" id="acctWhoNote" hidden>Switching sets up a team and a dashboard for many events. Your events come with you. <button class="textlink sm" data-goto="org">set up your team →</button></span>
+          </div>
+          <div class="cover-row">
+            <div class="cover-label"><span class="tile-ic" data-icon="guests" data-icon-color="var(--p-ink)"></span><div><b>your data and your guests'</b><span>What NoFuss keeps, and who sees it.</span></div></div>
+            <ul class="acct-list">
+              <li>Your events, plans and Pip's log stay in your account.</li>
+              <li>Guests' names and emails come from your Luma event. Pip never shares one guest's details with another.</li>
+              <li>Guests never see Pip's name, color or your notes about them.</li>
+            </ul>
+            <div class="acct-btns"><button class="ghost sm" data-todo="Downloads everything NoFuss keeps about you as one file. Not in the prototype.">download my data</button><button class="ghost sm" data-goto="apps">what Pip can reach</button></div>
+          </div>
+          <div class="acct-end">
+            <button class="ghost" data-goto="landing">sign out</button>
+            <button class="textlink sm acct-del" id="acctDel">delete my account</button>
+          </div>
+          <div class="acct-confirm" id="acctConfirm" hidden>
+            <b>delete your account?</b>
+            <span>This deletes your plans, Pip's log and your settings in NoFuss. Your events on Luma stay as they are. It can't be undone.</span>
+            <div class="acct-btns"><button class="btn sm" id="acctDelYes">delete everything</button><button class="ghost sm" id="acctDelNo">keep my account</button></div>
+          </div>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="acctSay">This is the boring part. The short version: no passwords, and your guests' details stay with you.</p></div>
+        <section class="also" aria-label="Elsewhere in settings">
+          <p class="field-label">elsewhere in settings</p>
+          <ul><li><button class="textlink sm" data-goto="pipset">change how Pip looks and talks</button></li><li><button class="textlink sm" data-goto="alerts">quiet hours and alerts</button></li><li><button class="textlink sm" data-goto="handson">how hands-on Pip is</button></li></ul>
+        </section>
+      </aside>
+      <div class="dock"><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 28 · connected apps (flow.md row 28; context/ui-ux/connectors-needed.md). Both paths.
+       The levels per action mirror prototype/connectors/registry.js: read = can, send/money = asks you first, blocked = never.
+       The host can only make a level stricter, never looser (host-levels.js). Olive = connected, yellow = the summary, pink = small counts. -->
+  <section class="screen inapp" data-id="apps">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="yourevents" title="Your events"><span class="ri" data-ri="home"></span><span class="lbl">your events</span></button>
+          <div class="rail-group">
+            <button class="rail-item" data-goto="event" title="Drinks on the roof"><span class="ri" data-ri="party"></span><span class="lbl" data-evname>Drinks on the roof</span></button>
+          </div>
+          <button class="rail-item" data-goto="ok" title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge ok-badge">2</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item on" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">A</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main" id="main-apps">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="home">
+          <h1 class="h-page">settings</h1>
+          <div class="set-tabs" role="tablist" aria-label="Settings">
+            <button role="tab" aria-selected="false" data-goto="pipset">make Pip yours</button>
+            <button role="tab" aria-selected="false" data-goto="alerts">alerts</button>
+            <button role="tab" aria-selected="false" data-goto="handson">how hands-on</button>
+            <button role="tab" aria-selected="true">connected apps</button>
+            <button role="tab" aria-selected="false" data-goto="account">account</button>
+          </div>
+          <section class="apps-sum" aria-label="Summary">
+            <div><b id="appsOn">3 connected</b><span>Pip only reaches the apps you connect, and only does what each one allows below.</span></div>
+            <ul class="lv-key" aria-label="What the levels mean">
+              <li><span class="lv lv-can">can</span>Pip just does it</li>
+              <li><span class="lv lv-ask">asks you first</span>waits for your OK</li>
+              <li><span class="lv lv-never">never</span>blocked, every time</li>
+            </ul>
+          </section>
+          <div id="appGroups"></div>
+          <p class="fine left">Tap a level to make it stricter. Levels marked "rule" are set by NoFuss and can't be loosened. "Demo" apps use sample data until they're connected for real.</p>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="appsSay">I only use what's connected. Anything that sends or spends waits for you.</p></div>
+        <section class="calm-card" aria-label="What Pip did with your apps">
+          <b>what I did with your apps</b>
+          <ul class="run" id="appsLog">
+            <li class="now"><span>today</span>Luma: read Drinks on the roof. ✓ Checked: date, time, place and capacity match.</li>
+            <li><span>today</span>Weather (demo): checked fri night at the venue. ~70% rain.</li>
+            <li><span>sun</span>Luma: read the guest list. 22 yes · 3 maybe · 5 no reply.</li>
+            <li><span>sat</span>TaskRabbit: found 2 helpers for setup, ~$46/hr. Showed you the link; you book there.</li>
+          </ul>
+        </section>
+        <section class="also" aria-label="Never">
+          <p class="field-label">never, whatever you set</p>
+          <ul><li>pay, book or tip on its own</li><li>message guests without your OK</li><li>cancel or delete anything</li></ul>
+        </section>
+      </aside>
+      <div class="dock"><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 29 · organization: set up your team (flow.md row 29; Ilteris's screen 2, the "first time here?" card) -->
+  <section class="screen onb" data-id="org">
+    <header class="onb-top"><button class="back" data-goto="who" aria-label="Back">←</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></header>
+    <main class="onb-col wide">
+      <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble">Three things, then you're in. You can change all of it later.</p></div>
+      <h1 class="q">set up your team</h1>
+      <div class="cover-row">
+        <div class="cover-label"><span class="tile-ic" data-icon="home" data-icon-color="var(--p-ink)"></span><div><b>your organization</b><span>Shows on your dashboard. Guests see your event names, not this.</span></div></div>
+        <input class="field" id="orgName" value="Northside Studio" aria-label="Organization name" autocomplete="off">
+      </div>
+      <div class="cover-row">
+        <div class="cover-label"><span class="tile-ic" data-icon="countdown" data-icon-color="var(--p-ink)"></span><div><b>how many events a year?</b><span>Shapes your home screen and your year numbers.</span></div></div>
+        <div class="pills" role="radiogroup" aria-label="Events a year"><button class="pill" role="radio" aria-checked="false" data-org="size">under 10</button><button class="pill" role="radio" aria-checked="false" data-org="size">10–30</button><button class="pill" role="radio" aria-checked="true" data-org="size">30+ <span class="sugg">suggested</span></button></div>
+      </div>
+      <div class="cover-row">
+        <div class="cover-label"><span class="tile-ic" data-icon="invite" data-icon-color="var(--p-ink)"></span><div><b>your team</b><span>Invite planners now or later.</span></div></div>
+        <div class="team-add"><input class="field" id="teamEmail" placeholder="name@company.com" aria-label="Teammate's email" autocomplete="off">
+          <div class="pills" role="radiogroup" aria-label="Role"><button class="pill" role="radio" aria-checked="true" data-org="role" data-val="can approve">can approve</button><button class="pill" role="radio" aria-checked="false" data-org="role" data-val="can view">can view</button></div>
+          <button class="btn btn-light" id="teamAdd">add</button></div>
+        <ul class="team-list" id="teamList">
+          <li><span class="ri-you">S</span><b>Sam (you)</b><span class="role-tag">owner</span></li>
+        </ul>
+        <span class="muted">Money over the cap always needs the owner, whoever is planning.</span>
+      </div>
+      <div class="cover-row">
+        <div class="cover-label"><span class="tile-ic" data-icon="approve" data-icon-color="var(--p-ink)"></span><div><b>who signs off on big changes?</b><span>Set per event. Big changes come to you first, then to them.</span></div></div>
+        <div class="pills" role="radiogroup" aria-label="Who signs off"><button class="pill" role="radio" aria-checked="true" data-org="signoff">a manager <span class="sugg">in-house events</span></button><button class="pill" role="radio" aria-checked="false" data-org="signoff">the client <span class="sugg">events for someone else</span></button></div>
+        <details class="big-list"><summary>what counts as big?</summary>
+          <ul><li>any payment, or money over the cap</li><li>the date, time or place</li><li>menu or vendor swaps</li><li>messages to guests</li><li>the guest count moving 10% or more</li></ul>
+          <span class="muted">Small things, like a confirmed delivery time, just go in the log.</span></details>
+      </div>
+      <button class="btn wide" data-goto="orgdash">go to my dashboard</button>
+      <p class="fine">You can skip the team for now.</p>
+    </main>
+  </section>
+
+  <!-- 30 · organization: the dashboard (flow.md row 30; Ilteris's screen 2). Main color yellow (this week), accent pink (counts). Pip: just the facts. -->
+  <section class="screen inapp" data-id="orgdash">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item on" data-goto="orgdash" title="Events"><span class="ri" data-ri="home"></span><span class="lbl">events</span></button>
+          <button class="rail-item" data-goto="orgdash" data-jump-ok title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge org-ok-badge">5</span></button>
+          <button class="rail-item" data-goto="guests" title="Guests across your events"><span class="ri" data-ri="guests"></span><span class="lbl">guests</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="reports" title="Reports"><span class="ri" data-ri="forecast"></span><span class="lbl">reports</span></button>
+          <button class="rail-item" data-goto="org" title="Team"><span class="ri" data-ri="invite"></span><span class="lbl">team</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">S</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="home org">
+          <div class="home-head">
+            <div><span class="muted"><span data-orgname>Northside Studio</span> · mon 11/23</span><h1 class="h-page">events</h1></div>
+            <button class="btn home-new" data-goto="start">+ new event</button>
+          </div>
+          <section class="week" aria-label="This week">
+            <div class="week-head"><b>coming up</b><span id="weekSum">4 events · 5 need you</span></div>
+            <div class="week-days">
+              <button class="wd now" data-goto="night"><span class="wd-d">today</span><b>Founders mixer</b><span>● live · 31 here</span></button>
+              <button class="wd" data-goto="event"><span class="wd-d">thu 12/3</span><b>Investor dinner</b><span class="cnt" data-left="inv">2 need you</span></button>
+              <button class="wd" data-goto="event"><span class="wd-d">wed 12/9</span><b>Team offsite</b><span class="cnt" data-left="off">2 need you</span></button>
+              <button class="wd" data-goto="place"><span class="wd-d">fri 12/18</span><b>Holiday party</b><span class="cnt" data-left="hol">1 needs you</span></button>
+            </div>
+          </section>
+          <div class="recs-head"><h2 class="h-sec">all events</h2><button class="textlink" data-goto="reports">year numbers → reports</button></div>
+          <div class="ev-list" role="table" aria-label="Events">
+            <div class="ev-row ev-th" role="row"><span role="columnheader">event</span><span role="columnheader">state</span><span role="columnheader">yes / invited</span><span role="columnheader">forecast</span><span role="columnheader">needs you</span></div>
+            <button class="ev-row" role="row" data-goto="night"><span role="cell"><b>Founders mixer</b><span class="muted">today · 6pm</span></span><span role="cell" class="st st-live">● live</span><span role="cell">45 / 80</span><span role="cell"><span class="fc-pill">~24–30</span></span><span role="cell" class="nyc">—</span></button>
+            <button class="ev-row" role="row" data-goto="event"><span role="cell"><b>Investor dinner</b><span class="muted">thu 12/3 · 7pm</span></span><span role="cell" class="st">◷ upcoming</span><span role="cell">20 / 24</span><span role="cell"><span class="fc-pill">~17–19</span></span><span role="cell" class="nyc"><i data-left-n="inv">2</i></span></button>
+            <button class="ev-row" role="row" data-goto="event"><span role="cell"><b>Team offsite</b><span class="muted">wed 12/9 · all day</span></span><span role="cell" class="st">◷ upcoming</span><span role="cell">64 / 90</span><span role="cell"><span class="fc-pill">~44–52</span></span><span role="cell" class="nyc"><i data-left-n="off">2</i></span></button>
+            <div class="ev-row" role="row"><span role="cell"><b>Holiday party</b><button class="textlink sm" data-goto="place">no place yet · find one</button></span><span role="cell" class="st">◷ upcoming</span><span role="cell">30 / 120</span><span role="cell"><span class="muted">too early</span></span><span role="cell" class="nyc"><i data-left-n="hol">1</i></span></div>
+          </div>
+          <details class="past">
+            <summary><b>done</b><span class="muted">27 · folded away</span></summary>
+            <button class="past-row" data-goto="dayafter"><b>Fall product launch</b><span class="muted">tue 11/10 · 76 came · forecast was ~70–80 ✓</span></button>
+            <div class="past-row"><b>Board dinner</b><span class="muted">thu 11/5 · 12 came · forecast was ~11–12 ✓</span></div>
+            <div class="past-row"><b>Design talk night</b><span class="muted">wed 10/28 · 41 came · forecast was ~45–55 ✗ (rain)</span></div>
+            <span class="muted past-more">+ 24 more in reports</span>
+          </details>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="orgSay">Morning. 5 things need you across 3 events. The mixer is on track.</p></div>
+        <section class="needs" aria-label="Needs your OK, by event" id="orgNeeds">
+          <div class="needs-head"><b>needs your OK</b><span class="count" id="orgOkCount">5</span></div>
+          <div class="ok-group" data-grp="inv">
+            <b>Investor dinner · thu 12/3 <span class="n">2</span></b>
+            <span>Caterer: broccoli → green beans · final headcount 18</span>
+            <span class="chain"><i class="done">you ✓</i><em>→</em><i class="wait">Dana, the client · waiting</i></span>
+            <button class="btn btn-light sm" data-goto="signoff">see what Dana sees</button>
+          </div>
+          <div class="ok-group" data-grp="off">
+            <b>Team offsite · wed 12/9 <span class="n">2</span></b>
+            <span>Venue deposit $500 · one reminder to the 26 who haven't replied</span>
+            <span class="chain"><i class="wait">you · waiting</i><em>→</em><i>Morgan, your manager</i></span>
+            <button class="btn btn-light sm" data-org-approve="off">approve both</button>
+          </div>
+          <div class="ok-group" data-grp="hol">
+            <b>Holiday party · fri 12/18 <span class="n">1</span></b>
+            <span>Only 30 of 120 said yes. Pip's plan: one reminder now, and find a place for ~60.</span>
+            <span class="chain"><i class="wait">you · waiting</i></span>
+            <button class="btn btn-light sm" data-org-approve="hol">approve the plan</button>
+          </div>
+        </section>
+        <section class="calm-card" aria-label="The rule">
+          <b>big changes go through people</b>
+          <span class="muted">Vendors can't change anything on their own. A big change comes to you, then to the event's manager or client.</span>
+        </section>
+      </aside>
+      <div class="dock"><button class="btn dock-ok" data-jump-ok>5 need your OK</button><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 31 · organization: what the client sees (flow.md row 31). The sign-off link: no app, no account. Black = needs your OK. -->
+  <section class="screen onb" data-id="signoff">
+    <header class="onb-top"><button class="back" data-goto="orgdash" aria-label="Back to the dashboard">←</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></header>
+    <main class="onb-col">
+      <p class="fine so-note">This is what Dana (the client) sees from the email or text. No app, no account.</p>
+      <div class="so-card" id="soCard">
+        <span class="so-from"><span data-orgname>Northside Studio</span> · Investor dinner · thu 12/3</span>
+        <h1 class="h-page on-dark">1 change needs your OK</h1>
+        <div class="so-change">
+          <b>the caterer swapped a side</b>
+          <span>Broccoli isn't available that week. Same price.</span>
+          <div class="ba"><span class="k">before</span><span><s>roasted broccoli</s></span><span class="k">after</span><span>green beans with almonds</span><span class="k">cost</span><span>no change</span></div>
+        </div>
+        <span class="chain on-dark"><i class="done">Sam, your planner ✓</i><em>→</em><i class="wait">you</i></span>
+        <div class="so-actions" id="soActions"><button class="btn btn-light wide" data-so="ok">approve</button><button class="textlink on-dark" data-so="ask">ask a question</button></div>
+        <div id="soAsk" hidden><label class="field-label on-dark" for="soQ">your question for Sam</label><textarea class="field so-q" id="soQ" placeholder="e.g. could it be asparagus instead?"></textarea><button class="btn btn-light wide" data-so="send">send to Sam</button></div>
+      </div>
+      <div class="so-done" id="soDone" hidden><span class="circle on big" aria-hidden="true"></span><h1 class="h-page" id="soDoneH">approved</h1><p id="soDoneT">Sam and Pip take it from here. Nothing else needs you for this dinner.</p></div>
+    </main>
+  </section>
+
+  <!-- 32 · organization: reports (flow.md row 32). Olive big box (real), dashed white = simulated. Pink small details. -->
+  <section class="screen inapp" data-id="reports">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="orgdash" title="Events"><span class="ri" data-ri="home"></span><span class="lbl">events</span></button>
+          <button class="rail-item" data-goto="orgdash" data-jump-ok title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge org-ok-badge">5</span></button>
+          <button class="rail-item" data-goto="guests" title="Guests across your events"><span class="ri" data-ri="guests"></span><span class="lbl">guests</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item on" data-goto="reports" title="Reports"><span class="ri" data-ri="forecast"></span><span class="lbl">reports</span></button>
+          <button class="rail-item" data-goto="org" title="Team"><span class="ri" data-ri="invite"></span><span class="lbl">team</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">S</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="home org">
+          <div class="home-head"><div><span class="muted"><span data-orgname>Northside Studio</span> · this year</span><h1 class="h-page">reports</h1></div></div>
+          <section class="rep-real" aria-label="Real numbers">
+            <div class="rr"><span class="rr-k">events this year</span><b>31</b></div>
+            <div class="rr"><span class="rr-k">real show rate</span><b>58%</b><span>dinners 90% · socials 50%</span></div>
+            <div class="rr"><span class="rr-k">forecast hit</span><b>4 of 5</b><span>last 5 events landed inside the range</span></div>
+          </section>
+          <section class="rep-sim" aria-label="Simulated numbers">
+            <div class="sim-card"><span class="sim-tag">simulated</span><span class="rr-k">forecast accuracy</span><b id="simAcc">± 3 guests</b></div>
+            <div class="sim-card"><span class="sim-tag">simulated</span><span class="rr-k">food not wasted</span><b id="simFood">$1,240</b></div>
+            <div class="sim-card run-card"><span class="rr-k">simulate a year</span><span class="muted" id="simTxt">Run 30 events quickly to see what forecasting saves. Simulated numbers stay marked.</span><button class="btn" id="simRun">run 30 events</button></div>
+          </section>
+          <h2 class="h-sec">forecast vs who came</h2>
+          <div class="fvc" id="fvc" aria-label="Forecast range and who came, last 5 events"></div>
+          <p class="fine left">Dashed = Pip's forecast range. Dot = who actually came (QR check-in).</p>
+          <h2 class="h-sec">event reports</h2>
+          <p class="muted">Share a read-only report with a client or sponsor.</p>
+          <div class="going">
+            <div class="go-row rep-row"><span class="go-date"><b>10</b>nov</span><div><b>Fall product launch</b><span class="muted">76 came of 88 yes · forecast ~70–80 ✓ · $4,180 spent</span></div><button class="ghost sm" data-share>share link</button></div>
+            <div class="go-row rep-row"><span class="go-date"><b>5</b>nov</span><div><b>Board dinner</b><span class="muted">12 of 12 · forecast ~11–12 ✓ · $1,320 spent</span></div><button class="ghost sm" data-share>share link</button></div>
+          </div>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble" id="repSay">The numbers live here so your home screen stays quick to read.</p></div>
+        <section class="calm-card" aria-label="How to read this">
+          <b>real vs simulated</b>
+          <span class="muted">Solid numbers come from your own check-ins. Dashed ones come from the simulation and are always marked.</span>
+        </section>
+        <section class="also" aria-label="What Pip learned">
+          <p class="field-label">what Pip learned</p>
+          <ul><li>Your dinners show up: 9 of 10 who say yes come.</li><li>Socials on Mondays come in ~15% lower.</li><li>Rain cut Design talk night by ~10 people.</li></ul>
+        </section>
+      </aside>
+      <div class="dock"><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <!-- 33 · organization: guests across events (flow.md row 33). Feeds the forecast. Guests never see it. -->
+  <section class="screen inapp" data-id="guests">
+    <div class="app">
+      <nav class="rail" aria-label="Menu">
+          <button class="rail-item rail-toggle" data-rail title="Menu"><span class="ri" data-ri="more"></span><span class="lbl">menu</span></button>
+          <button class="rail-item primary" data-goto="start" title="New event"><span class="ri" data-ri="add"></span><span class="lbl">new event</span></button>
+          <button class="rail-item" data-goto="orgdash" title="Events"><span class="ri" data-ri="home"></span><span class="lbl">events</span></button>
+          <button class="rail-item" data-goto="orgdash" data-jump-ok title="Needs your OK"><span class="ri" data-ri="approve"></span><span class="lbl">needs your OK</span><span class="badge org-ok-badge">5</span></button>
+          <button class="rail-item on" data-goto="guests" title="Guests across your events"><span class="ri" data-ri="guests"></span><span class="lbl">guests</span></button>
+          <button class="rail-item" data-goto="vendors" title="Vendors and places"><span class="ri" data-ri="location"></span><span class="lbl">vendors &amp; places</span></button>
+          <button class="rail-item" data-goto="reports" title="Reports"><span class="ri" data-ri="forecast"></span><span class="lbl">reports</span></button>
+          <button class="rail-item" data-goto="org" title="Team"><span class="ri" data-ri="invite"></span><span class="lbl">team</span></button>
+          <button class="rail-item" data-goto="apps" title="Connected apps"><span class="ri" data-ri="connectors"></span><span class="lbl">connected apps</span></button>
+          <span class="rail-grow"></span>
+          <button class="rail-item" data-goto="pipset" title="Settings"><span class="ri" data-ri="settings"></span><span class="lbl">settings</span></button>
+          <button class="rail-item" data-goto="account" title="You"><span class="ri ri-you">S</span><span class="lbl">you</span></button>
+        </nav>
+      <div class="rail-scrim" data-rail-close></div>
+      <div class="app-main">
+        <div class="app-top"><button class="menu-btn" data-rail-open aria-label="Open the menu">☰</button><span class="logo" role="img" aria-label="NoFuss"><span>n</span><span class="eye-o" aria-hidden="true"><i></i><i></i></span><span>fuss</span></span><span></span></div>
+        <div class="home org">
+          <div class="home-head"><div><span class="muted">across all your events · 412 guests</span><h1 class="h-page">guests</h1></div></div>
+          <div class="g-tools">
+            <input class="field" id="gSearch" placeholder="find a guest" aria-label="Find a guest" autocomplete="off">
+            <div class="pills" role="radiogroup" aria-label="Show"><button class="pill" role="radio" aria-checked="true" data-gf="all">everyone</button><button class="pill" role="radio" aria-checked="false" data-gf="sure">sure things</button><button class="pill" role="radio" aria-checked="false" data-gf="flaky">often don't come</button><button class="pill" role="radio" aria-checked="false" data-gf="new">new</button></div>
+          </div>
+          <div class="g-list" id="gList"></div>
+          <p class="fine left">From QR check-ins and the day-after reviews. Guests never see this.</p>
+        </div>
+      </div>
+      <aside class="pip-side" aria-label="Pip">
+        <div class="pipsay"><button class="pip-face" data-pipface aria-label="Chat with Pip"></button><p class="bubble">Someone who comes 9 times out of 10 counts more in my forecast than someone who usually doesn't.</p></div>
+        <section class="calm-card" aria-label="How it feeds the forecast">
+          <b>how this feeds the forecast</b>
+          <span class="muted">For a new event I start from yes · maybe · no reply, then lean on each guest's own history. That's why the range gets narrower with every event.</span>
+        </section>
+      </aside>
+      <div class="dock"><button class="launcher" data-chat aria-label="Tell Pip what you need"><span class="l-face" data-pipface-small></span><span class="l-lbl">tell Pip what you need</span><span class="l-mic" data-ri-white="mic"></span></button></div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script src="v2.js"></script>
+  <script src="pip-brain.js"></script>
+  <script src="luma-v2.js"></script>
+</body>
+</html>
